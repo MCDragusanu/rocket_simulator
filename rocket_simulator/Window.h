@@ -1,102 +1,45 @@
 #pragma once
 
 #include <Windows.h>
-#include <exception>
+#include <windowsx.h>
+#include <vector>
 #include <iostream>
-#include <functional>
-class WINDOW {
-public:
 
-	WINDOW(HINSTANCE instance, int width, int height, const char* windowTitle);
-	bool is_running() const noexcept;
-	void process_message();
-	HWND get_handle() const noexcept;
-    int get_window_width() const noexcept {
-        return this->width;
-    }
-    int get_window_height() const noexcept {
-        return this->height;
-    }
-protected :
-	virtual LRESULT wnd_proc(MSG& msg, WPARAM wp, LPARAM lp) = 0;
-	virtual void destroy() = 0;
-    void setHandle(HWND hwnd) {
-        this->hwnd = hwnd;
-    }
-    static LRESULT CALLBACK static_wnd_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-private :
-	bool running_state;
-	HWND hwnd;
-	HINSTANCE h_inst;
-    int width, height;
+// Observer interface
+struct WINDOW_OBSERVER {
+    virtual void on_window_resize(UINT new_width, UINT new_height) = 0;
+    virtual void on_window_minimized() = 0;
+    virtual void on_window_destroyed() = 0;
+    virtual void on_window_input_received(WPARAM wp, LPARAM lp) = 0;
+    virtual void on_window_input_released(WPARAM wp, LPARAM lp) = 0;
+    virtual void on_window_mouse_moved(int x, int y) {
+    };
+    virtual const size_t get_uid() const noexcept = 0;
 };
 
-
-class MainWindow : public WINDOW {
+// Window class
+class WINDOW {
 public:
-    MainWindow(HINSTANCE hInstance, int width, int height, const char* title)
-        : WINDOW(hInstance, width, height, title) {
-       
-
-            // Ensure WNDCLASSEX is properly initialized
-        WNDCLASSEX classDesc = {};
-        classDesc.cbSize = sizeof(WNDCLASSEX);  // Set the size of the structure
-        classDesc.lpfnWndProc = static_wnd_proc;  // Set the static window proc function
-        classDesc.lpszClassName = "ProjectRex";  // Set a unique window class name
-        classDesc.hInstance = hInstance;
-        classDesc.hCursor = LoadCursor(nullptr, IDC_ARROW);
-        classDesc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);  // Set background color
-
-        // Register the window class
-        if (!RegisterClassEx(&classDesc)) {
-            throw std::exception("Window class registration failed!");
-        }
-
-        // Create the window
-        HWND hwnd = CreateWindowEx(
-            0,
-            classDesc.lpszClassName,
-            title,
-            WS_OVERLAPPEDWINDOW,
-            CW_USEDEFAULT, CW_USEDEFAULT,
-           width , height,
-            nullptr, nullptr,
-            classDesc.hInstance,
-            nullptr);
-
-        if (hwnd == nullptr) {
-            throw std::exception("Window creation failed!");
-        }
-        setHandle(hwnd);
-        ShowWindow(hwnd, SW_SHOW);  // Display the window
-        UpdateWindow(hwnd);  // Refresh the window
-
-    }
+    WINDOW(HINSTANCE instance, UINT width, UINT height, const wchar_t* windowTitle);
+    ~WINDOW();
+    bool is_running() const noexcept;
+    void process_message();
+    HWND get_handle() const noexcept;
+    int get_window_width() const noexcept;
+    int get_window_height() const noexcept;
+    void add_listener(WINDOW_OBSERVER* observer);
+    void drop_listener(WINDOW_OBSERVER* observer);
 
 protected:
-    LRESULT wnd_proc(MSG& msg, WPARAM wp, LPARAM lp) override {
-        switch (msg.message) {
-        case WM_DESTROY:
-            PostQuitMessage(0);
-            return 0;
-        case WM_KEYDOWN:
-            // Handle key press
-            return 0;
-        default:
-            return DefWindowProc(msg.hwnd, msg.message, wp, lp);
-        }
-    }
-    void destroy() override {
-        BOOL result = DestroyWindow(this->get_handle());
-        if (result) {
-            std::cout << "Window has been destroyed";
-        }
-    }
+    void setHandle(HWND hwnd);
+    static LRESULT CALLBACK static_wnd_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+    void handle_events(UINT uMsg, WPARAM wp, LPARAM lp);
+    std::vector<WINDOW_OBSERVER*> m_observers;
 
-    
 private:
-    WNDCLASSEX m_classDesc = {};  // Configure the window class
-
-   
-        
+    bool running_state;
+    bool window_is_resizing = false;
+    HWND hwnd;
+    HINSTANCE h_inst;
+    UINT width, height;
 };

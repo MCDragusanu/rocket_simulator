@@ -13,18 +13,57 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\engine">
+      <UniqueIdentifier>{7c783918-9bad-4a6a-b318-a89035b1ed70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\win_api">
+      <UniqueIdentifier>{97904271-9359-45f0-ac35-5fe999b59f23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\win_api">
+      <UniqueIdentifier>{59d34b12-ab0f-4eb4-9e58-ec927ec1f9b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utility">
+      <UniqueIdentifier>{7af6986f-a630-4150-b9dd-b8bd94fad86b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utility">
+      <UniqueIdentifier>{470993ff-a546-4347-b4f0-42bb307726de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\engine\math">
+      <UniqueIdentifier>{bdb12510-efcf-4202-a5ce-01b36c828442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\engine\phisics">
+      <UniqueIdentifier>{4384e7c0-cc4d-489a-92b7-aec7a79d9f6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\engine\graphics">
+      <UniqueIdentifier>{65b19b84-23c1-45ea-8d7d-f32c634e38ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleLogger.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Header Files\engine\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Header Files\engine\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Header Files\engine\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\win_api</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleLogger.cpp">
+      <Filter>Source Files\utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
