@@ -12,19 +12,19 @@ public:
     static Logger& get_instance();
 
     // Add a new channel with a unique console window
-    void add_channel(const std::wstring& channel_name);
+    void add_channel(const std::string& channel_name);
 
     // Log an error message
-    void logError(const std::wstring& message);
+    void logError(const std::string& message);
 
     // Log a warning message
-    void logWarning(const std::wstring& message);
+    void logWarning(const std::string& message);
 
     // Log a debug message
-    void logDebug(const std::wstring& message);
+    void logDebug(const std::string& message);
 
     // Log a custom message to a specified channel
-    void logCustom(const std::wstring& channel_name, const std::wstring& message);
+    void logCustom(const std::string& channel_name, const std::string& message);
 
 private:
     // Private constructor for singleton
@@ -36,8 +36,8 @@ private:
 
     static Logger* _instance;
     // Log a message to a specific channel
-    void log(const std::wstring& channel_name, const std::wstring& message);
+    void log(const std::string& channel_name, const std::string& message);
 
-    std::unordered_map<std::wstring, HWND> channels; // Map of channels to console handles
+    std::unordered_map<std::string, HWND> channels; // Map of channels to console handles
     std::mutex mutex_; // Thread safety
 };

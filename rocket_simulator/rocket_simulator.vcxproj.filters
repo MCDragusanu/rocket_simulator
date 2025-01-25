@@ -13,32 +13,83 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Renderer">
+      <UniqueIdentifier>{09c2627e-0917-4156-b344-3d56257e3f86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Resources">
+      <UniqueIdentifier>{a1a03578-a335-480d-b1c3-dae8b5ef6241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer">
+      <UniqueIdentifier>{037326ff-d87e-4ede-855e-5deb929a9a86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Resources">
+      <UniqueIdentifier>{3c7a91ac-0806-443b-9b89-6c54e7a2bb9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{b9fd44f3-3a13-4f8b-b110-7c18499b4feb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils\logger">
+      <UniqueIdentifier>{1f633db6-ca97-421b-9ddf-bbd7d576bfa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{a151c29b-218d-48a1-85a6-83d6089392e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils\ConsoleLogger">
+      <UniqueIdentifier>{dfd4909c-501c-4ced-9ed9-e8b2be5fc670}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Glad">
+      <UniqueIdentifier>{863822f2-d322-4d6d-9de4-dba1eab4b80a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Managers">
+      <UniqueIdentifier>{5b643817-2e27-4ab0-a2d6-4156327494b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Managers">
+      <UniqueIdentifier>{e1030e9b-5112-4d6f-93fe-15b4a46ce8a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\gfx\resources\Resource.cpp">
+      <Filter>Source Files\Renderer\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gfx\resources\VertexBuffer.cpp">
+      <Filter>Source Files\Renderer\Resources</Filter>
+    </ClCompile>
     <ClCompile Include="src\utils\logging\ConsoleLogger.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Utils\ConsoleLogger</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\win_api\window\Window.cpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="src\glad\glad.c">
+      <Filter>Source Files\Glad</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gfx\resources\Shader.cpp">
+      <Filter>Source Files\Renderer\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gfx\managers\ShaderProgram.cpp">
+      <Filter>Source Files\Renderer\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gfx\resources\VertexArrayObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\gfx\resources\Resource.h">
+      <Filter>Header Files\Renderer\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gfx\resources\VertexBuffer.h">
+      <Filter>Header Files\Renderer\Resources</Filter>
+    </ClInclude>
     <ClInclude Include="src\utils\logging\ConsoleLogger.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Utils\logger</Filter>
     </ClInclude>
-    <ClInclude Include="src\math\Math.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\gfx\resources\Shader.h">
+      <Filter>Header Files\Renderer\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="src\math\Matrix.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\gfx\managers\ShaderProgram.h">
+      <Filter>Header Files\Renderer\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\math\Vector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\win_api\window\Window.h">
+    <ClInclude Include="src\gfx\resources\VertexArrayObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

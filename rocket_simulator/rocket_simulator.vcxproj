@@ -19,16 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\gfx\managers\ShaderProgram.cpp" />
+    <ClCompile Include="src\gfx\resources\Shader.cpp" />
+    <ClCompile Include="src\gfx\resources\Resource.cpp" />
+    <ClCompile Include="src\glad\glad.c" />
     <ClCompile Include="src\utils\logging\ConsoleLogger.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\win_api\window\Window.cpp" />
+    <ClCompile Include="src\gfx\resources\VertexBuffer.cpp" />
+    <ClCompile Include="src\gfx\resources\VertexArrayObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\gfx\managers\ShaderProgram.h" />
+    <ClInclude Include="src\gfx\resources\Shader.h" />
+    <ClInclude Include="src\gfx\resources\Resource.h" />
     <ClInclude Include="src\utils\logging\ConsoleLogger.h" />
-    <ClInclude Include="src\math\Math.h" />
-    <ClInclude Include="src\math\Matrix.h" />
-    <ClInclude Include="src\math\Vector.h" />
-    <ClInclude Include="src\win_api\window\Window.h" />
+    <ClInclude Include="src\gfx\resources\VertexBuffer.h" />
+    <ClInclude Include="src\gfx\resources\VertexArrayObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
