@@ -1,11 +1,15 @@
 #include <Windows.h>
 #include <iostream>
-#include "Window.h"
-#include "ConsoleLogger.h"
-#include "Math.h"
-#include <sstream>
-#include "ConsoleLogger.h"
 #include <conio.h>
+#include <sstream>
+
+#include "win_api/window/Window.h"
+#include "utils/logging/ConsoleLogger.h"
+#include "math/Math.h"
+
+#include "../include/glad/glad.h"
+#include "../include/glfw/glfw3.h"
+
 
 // Linear transform computation using both Math and FAST_MATH namespaces
 template<size_t N>
@@ -13,16 +17,16 @@ void run_linear_transform_benchmark() {
     std::wstringstream ss;
 
     // Dynamically allocate memory for vector, matrix, and result objects
-    auto vector =  HEAP_VECTOR<N>();
-    auto matrix =  HEAP_MATRIX<N,N>();
-    auto b      =  HEAP_VECTOR<N>();
+    auto vector =  HeapVector<N>();
+    auto matrix =  HeapMatrix<N,N>();
+    auto b      =  HeapVector<N>();
 
     Math::generate_random_vector<N>(b);
     Math::generate_random_matrix<N ,N>(matrix);
     Math::generate_random_vector<N>(vector);
 
-    auto result_math = HEAP_VECTOR<N>();
-    auto result_fast_math = HEAP_VECTOR<N>();
+    auto result_math = HeapVector<N>();
+    auto result_fast_math = HeapVector<N>();
 
     // Measure time for Math namespace linear transform
     auto start = std::chrono::high_resolution_clock::now();
@@ -67,9 +71,9 @@ void test_lin_system_solver() {
     std::wstringstream ss;
 
     // Allocate memory for the vector and result objects
-    auto x_copy = HEAP_VECTOR<N>();  // Solution vector for copy solver
-    auto A_copy = HEAP_MATRIX<N, N>();  // Identity matrix for copy solver
-    auto b_copy = HEAP_VECTOR<N>();  // Right-hand side vector for copy solver
+    auto x_copy = HeapVector<N>();  // Solution vector for copy solver
+    auto A_copy = HeapMatrix<N, N>();  // Identity matrix for copy solver
+    auto b_copy = HeapVector<N>();  // Right-hand side vector for copy solver
 
    
     // Set A as identity matrix for both solvers
@@ -144,13 +148,22 @@ void test_lin_system_solver() {
 
 
 
-// WinMain: Entry point for a Windows application
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
+int main() {
+    glfwInit(); 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3); 
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    run_linear_transform_benchmark<4000>();
-    test_lin_system_solver<1000>();
-    _getche();
-    return 0;
+    GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+    if (window == NULL) {
+        std::cout << "Failed to create GLFW window" << std::endl;
+        glfwTerminate(); return-1;
+    }
+    glfwMakeContextCurrent(window);
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) { 
+        std::cout << "Failed to initialize GLAD" << std::endl; return-1;
+    }
+    //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); return 0;
 }
 
    

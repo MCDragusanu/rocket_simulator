@@ -1,14 +1,14 @@
 #include "Window.h"
 
-WINDOW::WINDOW(HINSTANCE instance, UINT width, UINT height, const wchar_t* windowTitle)
-    : h_inst(instance), running_state(true), width(width), height(height) {
+Window::Window(HINSTANCE instance, UINT width, UINT height, const wchar_t* windowTitle)
+    : mHinst(instance), mRunning(true), mWidth(width), mHeight(height) {
 
     // Window class setup
     WNDCLASSEX classDesc = {};
     classDesc.cbSize = sizeof(WNDCLASSEX);
     classDesc.lpfnWndProc = static_wnd_proc; // Register static window procedure
     classDesc.lpszClassName = L"ProjectRex";
-    classDesc.hInstance = this->h_inst;
+    classDesc.hInstance = this->mHinst;
     classDesc.hCursor = LoadCursor(nullptr, IDC_ARROW);
     classDesc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 
@@ -17,7 +17,7 @@ WINDOW::WINDOW(HINSTANCE instance, UINT width, UINT height, const wchar_t* windo
     }
 
     // Create window
-    hwnd = CreateWindowEx(
+    mHwnd = CreateWindowEx(
         0,
         classDesc.lpszClassName,
         windowTitle,
@@ -29,15 +29,15 @@ WINDOW::WINDOW(HINSTANCE instance, UINT width, UINT height, const wchar_t* windo
         this
     );
 
-    if (hwnd == nullptr) {
+    if (mHwnd == nullptr) {
         throw std::exception("Window creation failed!");
     }
 
-    ShowWindow(hwnd, SW_SHOW);
-    UpdateWindow(hwnd);
+    ShowWindow(mHwnd, SW_SHOW);
+    UpdateWindow(mHwnd);
 }
 
-WINDOW::~WINDOW()
+Window::~Window()
 {
     bool result = ~DestroyWindow(get_handle());
     if (result) {
@@ -47,11 +47,11 @@ WINDOW::~WINDOW()
     }
 }
 
-bool WINDOW::is_running() const noexcept {
-    return this->running_state;
+bool Window::is_running() const noexcept {
+    return this->mRunning;
 }
 
-void WINDOW::process_message() {
+void Window::process_message() {
 
     MSG msg;
     while (PeekMessage(&msg, nullptr, NULL, NULL, PM_REMOVE))
@@ -63,34 +63,34 @@ void WINDOW::process_message() {
 
 }
 
-HWND WINDOW::get_handle() const noexcept {
-    return hwnd;
+HWND Window::get_handle() const noexcept {
+    return mHwnd;
 }
 
-int WINDOW::get_window_width() const noexcept {
-    return this->width;
+int Window::get_window_width() const noexcept {
+    return this->mWidth;
 }
 
-int WINDOW::get_window_height() const noexcept {
-    return this->height;
+int Window::get_window_height() const noexcept {
+    return this->mHeight;
 }
 
-void WINDOW::add_listener(WINDOW_OBSERVER* observer) {
+void Window::add_listener(WindowObserver* observer) {
     m_observers.push_back(observer);
 }
 
-void WINDOW::drop_listener(WINDOW_OBSERVER* observer) {
+void Window::drop_listener(WindowObserver* observer) {
     m_observers.erase(std::remove_if(m_observers.begin(), m_observers.end(),
-        [observer](const WINDOW_OBSERVER* item) {
+        [observer](const WindowObserver* item) {
             return observer->get_uid() == item->get_uid();
         }), m_observers.end());
 }
 
-void WINDOW::setHandle(HWND hwnd) {
-    this->hwnd = hwnd;
+void Window::set_handle(HWND hwnd) {
+    this->mHwnd = hwnd;
 }
 
-LRESULT CALLBACK WINDOW::static_wnd_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT CALLBACK Window::static_wnd_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     if (uMsg == WM_NCCREATE) {
         // Store the this pointer in the window's user data
         LPCREATESTRUCT lpcs = reinterpret_cast<LPCREATESTRUCT>(lParam);
@@ -98,7 +98,7 @@ LRESULT CALLBACK WINDOW::static_wnd_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LP
     }
 
     // Retrieve the this pointer from the window's user data
-    WINDOW* window = reinterpret_cast<WINDOW*>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
+    Window* window = reinterpret_cast<Window*>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
 
     if (window) {
         window->handle_events(uMsg, wParam, lParam);
@@ -116,7 +116,7 @@ LRESULT CALLBACK WINDOW::static_wnd_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LP
     }
 }
 
-void WINDOW::handle_events(UINT uMsg, WPARAM wParam, LPARAM lParam)
+void Window::handle_events(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     
     switch (uMsg) {
@@ -128,8 +128,8 @@ void WINDOW::handle_events(UINT uMsg, WPARAM wParam, LPARAM lParam)
         for (auto observer : m_observers) {
             observer->on_window_resize(new_width, new_height);
         }
-        this->width = new_width;
-        this->height = new_height;
+        this->mWidth = new_width;
+        this->mHeight = new_height;
         break;
     }
 
