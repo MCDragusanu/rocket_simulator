@@ -1,8 +1,12 @@
-#include "VertexBuffer.h"
+#include "Resource.h"
 #include <assert.h>
 #include "../../../include/glfw/glfw3.h"
 #include <stdexcept>
 #include <iostream>
+
+using namespace Resources;
+
+
 
 VertexBuffer::VertexBuffer(std::unique_ptr<float[]>&& buffer, size_t vertexCount, size_t vertexStride, int normalization) :
     OpenGLResource(-1,ResourceType::BUFFER_VERTEX),
@@ -39,6 +43,42 @@ VertexBuffer::VertexBuffer(size_t vertexCount, size_t vertexStride, int normaliz
     print_buffer_content();
 #endif // _DEBUG
 
+}
+
+Resources::VertexBuffer::VertexBuffer(VertexBuffer&& other) :
+    OpenGLResource(other.get_resource_id() , other.get_resource_type()),
+    pBuffer(std::move(other.pBuffer)),
+    mVertexCount(other.mVertexCount),
+    mVertexStride(other.mVertexStride),
+    mFloatCount(other.mFloatCount),
+    mByteSize(other.mByteSize),
+    mWithNormalisation(other.mWithNormalisation) {
+    other.mVertexCount = 0;
+    other.mVertexStride = 0;
+    other.mFloatCount = 0;
+    other.mByteSize = 0;
+    other.mWithNormalisation = 0;
+}
+
+VertexBuffer& Resources::VertexBuffer::operator=(VertexBuffer&& other)
+{
+    if (this != &other) {
+        pBuffer = std::move(other.pBuffer);
+        mVertexCount = other.mVertexCount;
+        mVertexStride = other.mVertexStride;
+        mFloatCount = other.mFloatCount;
+        mByteSize = other.mByteSize;
+        mWithNormalisation = other.mWithNormalisation;
+        this->set_resouce_id(other.get_resource_id());
+
+        other.set_resouce_id(-1);
+        other.mVertexCount = 0;
+        other.mVertexStride = 0;
+        other.mFloatCount = 0;
+        other.mByteSize = 0;
+        other.mWithNormalisation = 0;
+    }
+    return *this;
 }
 
 
@@ -107,4 +147,13 @@ void VertexBuffer::print_buffer_content()const noexcept
         std::cout << pBuffer[i] << " ";
     }
     std::cout << "]\n";
+}
+
+void Resources::VertexBuffer::release()
+{
+    this->pBuffer.release();
+    this->mFloatCount = -1;
+    this->mByteSize - -1;
+    this->mVertexCount = -1;
+    this->mVertexStride = -1;
 }

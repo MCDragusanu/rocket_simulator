@@ -1,10 +1,12 @@
-#include "Shader.h"
+#include "Resource.h"
 
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
 #include "../../utils/logging/ConsoleLogger.h"
+
+using namespace Resources;
+
 Shader::Shader(const char* src, const char* shaderName, ResourceType type, bool srcIsPath) : OpenGLResource(type)
 {
     if (srcIsPath) {
@@ -36,6 +38,10 @@ Shader::Shader(const char* src, const char* shaderName, ResourceType type, bool 
     }
 }
 
+Resources::Shader::Shader(ResourceType type) : OpenGLResource( -1, type)
+{
+}
+
 const char* Shader::get_shader_source_code() const noexcept
 {
     if (mShaderName == "FAILED TO LOAD!") return nullptr;
@@ -50,4 +56,9 @@ const char* Shader::get_shader_path() const noexcept
 const char* Shader::get_shader_name() const noexcept
 {
     return mShaderName.c_str();
+}
+
+void Resources::Shader::release()
+{
+    
 }

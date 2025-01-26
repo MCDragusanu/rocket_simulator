@@ -1,7 +1,8 @@
-#include "ShaderProgram.h"
+#include "Resource.h"
 #include <cassert>
 #include <iostream>
 
+using namespace Resources;
 
 
 ShaderProgram::ShaderProgram() : OpenGLResource(ResourceType::SHADER_MANAGER) {
@@ -11,11 +12,22 @@ ShaderProgram::ShaderProgram() : OpenGLResource(ResourceType::SHADER_MANAGER) {
    
 }
 
+void Resources::ShaderProgram::link_program()
+{
+    glLinkProgram(this->get_resource_id());
+}
+
 void ShaderProgram::run_program() {
   
     glUseProgram(this->get_resource_id());
 }
-bool ShaderProgram::compile_shader(Shader& shader, std::ostream& outputLog) const {
+
+void Resources::ShaderProgram::release()
+{
+    glDeleteProgram(this->get_resource_id());
+}
+
+bool ShaderProgram::compile_shader(Shader& shader, std::ostream& outputLog) const  {
     if (shader.get_shader_source_code() == nullptr) {
         outputLog << "ERROR: Compiling Shader;\n";
         outputLog << "Reason: No source code found!\n";
@@ -49,12 +61,14 @@ bool ShaderProgram::compile_shader(Shader& shader, std::ostream& outputLog) cons
     // Attach shader to program and link it
     glAttachShader(this->get_resource_id(), shader_handle);
     glLinkProgram(this->get_resource_id());
+        
+    
 
     // Check if linking was successful
     glGetProgramiv(this->get_resource_id(), GL_LINK_STATUS, &success);
     glGetProgramInfoLog(this->get_resource_id(), 512, nullptr, infoLog);
     if (!success) {
-        outputLog << "ERROR: Compiling Shader;\n";
+        outputLog << "ERROR: Attaching Shader;\n";
         outputLog << "Reason: Failed to link Shader Program!\n";
         outputLog << "Info: " << infoLog;
         outputLog << "Shader Name: " << shader.get_shader_name() << "\n";
@@ -70,6 +84,11 @@ bool ShaderProgram::compile_shader(Shader& shader, std::ostream& outputLog) cons
 
     std::cout << shader.get_shader_name() << " attached succesfully!\n";
     return true; 
+}
+
+bool Resources::ShaderProgram::isLinked() const noexcept
+{
+    return this->mLinkedState;
 }
 
 GLuint ShaderProgram::issue_handle(const Shader& shader, std::ostream& outputLog) const {
@@ -89,7 +108,7 @@ GLuint ShaderProgram::issue_handle(const Shader& shader, std::ostream& outputLog
     assert(shader_type != -1);  
     if (shader_type == -1) {
         outputLog << "ERROR: Issuing Handle for Shader;\n";
-        outputLog << "Reason: Invalid Resource Type: " << OpenGLResource::resource_type_to_string((int)shader.get_resource_type()) << "\n";
+        outputLog << "Reason: Invalid Resource Type: " << Resources :: OpenGLResource :: resource_type_to_string((int)shader.get_resource_type()) << "\n";
         outputLog << "Shader Name: " << shader.get_shader_name() << "\n";
         return -1;
     }

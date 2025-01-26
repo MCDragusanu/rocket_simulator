@@ -1,5 +1,7 @@
 #include "Resource.h"
 
+using namespace Resources;
+
 GLuint OpenGLResource::index = -1;
 
 OpenGLResource::OpenGLResource(ResourceType resourceType) : mUid(issue_next_uid()) , mResourceType(resourceType)
@@ -32,3 +34,4 @@ GLuint OpenGLResource::issue_next_uid()
 {
 	return ++index;
 }
+
