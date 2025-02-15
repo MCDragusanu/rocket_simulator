@@ -48,48 +48,90 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\gfx\resources\Resource.cpp">
-      <Filter>Source Files\Renderer\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gfx\resources\VertexBuffer.cpp">
-      <Filter>Source Files\Renderer\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="src\utils\logging\ConsoleLogger.cpp">
       <Filter>Source Files\Utils\ConsoleLogger</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\glad\glad.c">
       <Filter>Source Files\Glad</Filter>
     </ClCompile>
-    <ClCompile Include="src\gfx\resources\Shader.cpp">
-      <Filter>Source Files\Renderer\Resources</Filter>
+    <ClCompile Include="src\opengl\gfx\OpenGLContext.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\gfx\managers\ShaderProgram.cpp">
-      <Filter>Source Files\Renderer\Managers</Filter>
+    <ClCompile Include="src\opengl\window\OpenGLWindow.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\gfx\resources\VertexArrayObject.cpp">
+    <ClCompile Include="src\core\gfx\LayerStack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opengl\gfx\OpenGLBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLVertexShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLFragmentShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLGeometryShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\gfx\Buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\gfx\resources\Resource.h">
-      <Filter>Header Files\Renderer\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gfx\resources\VertexBuffer.h">
-      <Filter>Header Files\Renderer\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="src\utils\logging\ConsoleLogger.h">
       <Filter>Header Files\Utils\logger</Filter>
     </ClInclude>
-    <ClInclude Include="src\gfx\resources\Shader.h">
-      <Filter>Header Files\Renderer\Resources</Filter>
+    <ClInclude Include="src\utils\error_handlers\OpenGLErrorHandler.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gfx\managers\ShaderProgram.h">
-      <Filter>Header Files\Renderer\Managers</Filter>
+    <ClInclude Include="src\opengl\gfx\OpenGLContext.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gfx\resources\VertexArrayObject.h">
+    <ClInclude Include="src\core\gfx\GraphicsContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\events\EventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\window\MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\window\OpenGLWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\Layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\LayerStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\Buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\gfx\OpenGLBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\shaders_api\ShaderPipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\shaders_api\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLVertexShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLFragmentShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLGeometryShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

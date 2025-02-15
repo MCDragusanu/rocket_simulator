@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -18,68 +18,35 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\core\gfx\Buffer.cpp" />
-    <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.cpp" />
-    <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLGeometryShader.cpp" />
-    <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLFragmentShader.cpp" />
-    <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLVertexShader.cpp" />
-    <ClCompile Include="src\opengl\gfx\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\core\gfx\LayerStack.cpp" />
-    <ClCompile Include="src\opengl\window\OpenGLWindow.cpp" />
-    <ClCompile Include="src\opengl\gfx\OpenGLContext.cpp" />
-    <ClCompile Include="src\glad\glad.c" />
-    <ClCompile Include="src\utils\logging\ConsoleLogger.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.h" />
-    <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLGeometryShader.h" />
-    <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLFragmentShader.h" />
-    <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLVertexShader.h" />
-    <ClInclude Include="src\core\gfx\shaders_api\Shader.h" />
-    <ClInclude Include="src\core\gfx\shaders_api\ShaderPipeline.h" />
-    <ClInclude Include="src\opengl\gfx\OpenGLBuffer.h" />
-    <ClInclude Include="src\core\gfx\Buffer.h" />
-    <ClInclude Include="src\core\gfx\Layer.h" />
-    <ClInclude Include="src\core\gfx\LayerStack.h" />
-    <ClInclude Include="src\opengl\window\OpenGLWindow.h" />
-    <ClInclude Include="src\core\events\EventHandler.h" />
-    <ClInclude Include="src\core\window\MainWindow.h" />
-    <ClInclude Include="src\opengl\gfx\OpenGLContext.h" />
-    <ClInclude Include="src\core\gfx\GraphicsContext.h" />
-    <ClInclude Include="src\utils\error_handlers\OpenGLErrorHandler.h" />
-    <ClInclude Include="src\utils\logging\ConsoleLogger.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b6633ac5-a652-4e59-9744-e8e4aaf47ccf}</ProjectGuid>
-    <RootNamespace>rocketsimulator</RootNamespace>
+    <ProjectGuid>{118bdda4-df7b-406b-9b94-81acee7fac79}</ProjectGuid>
+    <RootNamespace>testingrocketsimulator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>rocket_simulator_api</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -104,20 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(ProjectDir)lib\glfw\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\glfw\;$(ProjectDir)include\glad\;$(ProjectDir)include\KHR\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>$(ProjectDir)lib\glfw\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\glfw\;$(ProjectDir)include\glad\;$(ProjectDir)include\KHR\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(ProjectDir)lib\glfw\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\glfw\;$(ProjectDir)include\glad\;$(ProjectDir)include\KHR\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LibraryPath>$(ProjectDir)lib\glfw\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)include\glfw\;$(ProjectDir)include\glad\;$(ProjectDir)include\KHR\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -128,9 +91,9 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>NotSet</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rocket_simulator_api.lib;glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -144,11 +107,11 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>NotSet</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rocket_simulator_api.lib;glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -157,13 +120,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>NotSet</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rocket_simulator_api.lib;glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -177,13 +139,17 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>NotSet</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rocket_simulator_api.lib;glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="resources\shaders\pixel_shader.txt" />
+    <Text Include="resources\shaders\vertex_shader.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
