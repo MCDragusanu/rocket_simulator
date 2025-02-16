@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\events\EventHandler.cpp" />
     <ClCompile Include="src\core\gfx\Buffer.cpp" />
+    <ClCompile Include="src\core\gfx\GraphicsContext.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLGeometryShader.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLFragmentShader.cpp" />

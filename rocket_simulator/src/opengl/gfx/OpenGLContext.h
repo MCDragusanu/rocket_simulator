@@ -1,10 +1,9 @@
 #pragma once
 #include "../../core/gfx/GraphicsContext.h"
-#include "../../../include/glad/glad.h"
-#include "../../../include/glfw/glfw3.h"
 
 
-namespace OPEN_GL::GFX {
+struct GLFWwindow;
+namespace OpenGL::gfx {
 
 	class OpenGLContext : public Core::gfx::GraphicsContext{
 

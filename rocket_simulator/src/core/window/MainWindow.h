@@ -1,11 +1,12 @@
 #pragma once
 #include <memory>
 #include <string>
-#include "../events/EventHandler.h"
+
 
 
 namespace Core::Window {
-
+	
+	
 	struct WindowAttributes {
 		unsigned int width = { 1920 };
 		unsigned int height = { 1080 };
@@ -21,7 +22,7 @@ namespace Core::Window {
 		virtual void* getWindowPtr() const = 0;
 		virtual void setVsync(bool isEnabled) = 0;
 		
-		inline void setEventHandler(Core::Events::WindowEventHandler* handler) { 
+		inline void setEventHandler(void* handler) { 
 			this->mData.pHandler = handler;
 		}
 		
@@ -42,7 +43,7 @@ namespace Core::Window {
 		};
 		struct WindowData {
 			WindowAttributes attributes = {};
-			Core::Events::WindowEventHandler* pHandler = { nullptr };
+			void* pHandler = { nullptr };
 		};
 		WindowData mData;
 	

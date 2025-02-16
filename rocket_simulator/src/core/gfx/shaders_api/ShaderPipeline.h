@@ -3,7 +3,7 @@
 #include <assert.h>
 #include "Shader.h"
 
-namespace Core::gfx::ShadersApi{
+namespace Core::gfx::shaders{
 	enum class PipeLineState {
 		Default,
 		Created,

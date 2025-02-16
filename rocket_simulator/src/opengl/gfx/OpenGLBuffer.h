@@ -1,7 +1,7 @@
 #pragma once
 #include "../../core/gfx/Buffer.h"
 
-namespace OPEN_GL::GFX {
+namespace OpenGL::gfx {
 	
 	
 	class OpenGLVertexBuffer : public Core :: gfx :: VertexBuffer

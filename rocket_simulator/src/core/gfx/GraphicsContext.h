@@ -25,6 +25,5 @@ namespace Core::gfx {
 	};
 };
 
-Core::gfx::GraphicsContext* Core::gfx::GraphicsContext::instance = nullptr;
 
 

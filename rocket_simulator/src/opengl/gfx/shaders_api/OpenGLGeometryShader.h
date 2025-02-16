@@ -3,7 +3,7 @@
 #include "../../../core/gfx/shaders_api/Shader.h"
 
 namespace OpenGL::ShadersApi {
-	class OpenGLGeometryShader : public Core::gfx::ShadersApi::FragmentShader {
+	class OpenGLGeometryShader : public Core::gfx::shaders::FragmentShader {
 		friend class OpenGLShaderPipeline;
 	public:
 		OpenGLGeometryShader(const std::string& sourceCode);

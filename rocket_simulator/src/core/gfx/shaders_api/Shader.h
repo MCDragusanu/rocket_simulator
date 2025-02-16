@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-namespace Core::gfx::ShadersApi {
+namespace Core::gfx::shaders {
 	enum class ShaderType {
 		VertexShader,
 		FragmentShader,

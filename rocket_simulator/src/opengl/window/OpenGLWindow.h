@@ -4,21 +4,21 @@
 #include "../gfx/OpenGLContext.h"
 
 
-namespace OPEN_GL::Window {
+namespace OpenGL::Window {
 	
 	class OpenGLWindow : public Core::Window::MainWindow
 	{
 	public:
-		virtual void initWindow(Core::Window::WindowAttributes& data) override;
-		virtual void shutDown() override;
-		virtual void onUpdate() override;
-		virtual void setVsync(bool is_enabled) override;
-		virtual void* getWindowPtr() const override {
+		 void initWindow(Core::Window::WindowAttributes& data) override;
+		 void shutDown() override;
+		 void onUpdate() override;
+		 void setVsync(bool is_enabled) override;
+		 void* getWindowPtr() const override {
 			return pWindow;
 		}
 	private:
-		GLFWwindow* pWindow;
-		std::shared_ptr<OPEN_GL::GFX::OpenGLContext> pContext;
+		GLFWwindow* pWindow = { nullptr };
+		std::shared_ptr<OpenGL::gfx::OpenGLContext> pContext;
 	};
 }
 

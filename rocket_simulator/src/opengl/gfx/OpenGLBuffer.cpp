@@ -2,7 +2,7 @@
 #include "../../../include/glad/glad.h"
 #include "../../../include/glfw/glfw3.h"
 #include "../../utils/error_handlers/OpenGLErrorHandler.h"
-namespace OPEN_GL :: GFX {
+namespace OpenGL :: gfx {
 	
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* data, size_t byteSize)
 	{

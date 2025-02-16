@@ -3,7 +3,7 @@
 #include "../../../core/gfx/shaders_api/Shader.h"
 namespace OpenGL::ShadersApi {
 	
-	class OpenGLVertexShader  : public Core::gfx::ShadersApi::VertexShader{
+	class OpenGLVertexShader  : public Core::gfx::shaders::VertexShader{
 		friend class OpenGLShaderPipeline;
 	public:
 		OpenGLVertexShader(const std::string& sourceCode);

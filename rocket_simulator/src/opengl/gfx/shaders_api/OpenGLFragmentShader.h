@@ -4,7 +4,7 @@
 
 namespace OpenGL::ShadersApi {
 
-	class OpenGLFragmentShader : public Core::gfx::ShadersApi::FragmentShader {
+	class OpenGLFragmentShader : public Core::gfx::shaders::FragmentShader {
 		friend class OpenGLShaderPipeline;
 	public:
 		OpenGLFragmentShader(const std::string& sourceCode);

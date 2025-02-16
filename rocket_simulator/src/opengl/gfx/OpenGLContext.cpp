@@ -5,8 +5,8 @@
 #include "OpenGLContext.h"
 #include "../../../include/glad/glad.h"
 #include "../../../include/glfw/glfw3.h"
-#include "../../utils/error_handlers/OpenGLErrorHandler.h"
-namespace OPEN_GL::GFX {
+
+namespace OpenGL::gfx {
 	OpenGLContext::OpenGLContext(GLFWwindow* window) : mWindowHandle(window)
 	{
 		assert(mWindowHandle != nullptr);

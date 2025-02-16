@@ -2,8 +2,11 @@
 #include <sstream>
 #include <assert.h>
 #include "OpenGLWindow.h"
+#include "../../include/glad/glad.h"
+#include "../../include/glfw/glfw3.h"
+#include "../../core/events/EventHandler.h"
 
-namespace OPEN_GL::Window {
+namespace OpenGL::Window {
 
 
     void OpenGLWindow::initWindow(Core::Window::WindowAttributes& data)
@@ -33,7 +36,7 @@ namespace OPEN_GL::Window {
             exit(2);
         }
 
-        this->pContext = std::make_shared< OPEN_GL::GFX::OpenGLContext>(pWindow);
+        this->pContext = std::make_shared< OpenGL::gfx::OpenGLContext>(pWindow);
         pContext->init();
 
         glfwSetWindowUserPointer(pWindow, &mData);
@@ -45,8 +48,9 @@ namespace OPEN_GL::Window {
             data.attributes.height = height;
 
             auto event = Core::Events::create_window_event(width, height, (uint8_t)Core::Events::EventType::WindowResized);
-            if (data.pHandler != nullptr) {
-                data.pHandler->on_window_event(event);
+            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
+            if (callback != nullptr) {
+                callback->on_window_event(event);
             }
 
             });
@@ -55,36 +59,38 @@ namespace OPEN_GL::Window {
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
             auto event = Core::Events::create_window_event(data.attributes.width, data.attributes.height, (uint8_t)Core::Events::EventType::WindowClosed);
-            if (data.pHandler != nullptr) {
-                data.pHandler->on_window_event(event);
+            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
+            if (callback != nullptr) {
+                callback->on_window_event(event);
             }
             });
 
         glfwSetKeyCallback(pWindow, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
             switch (action)
             {
             case GLFW_PRESS:
             {
                 auto event = Core::Events::create_keyboard_event((uint64_t)key, (uint8_t)Core::Events::EventType::KeyboardPressed);
-                if (data.pHandler) {
-                    data.pHandler->on_keyboard_event(event);
+                if (callback) {
+                    callback->on_keyboard_event(event);
                 }
                 break;
             }
 
             case GLFW_REPEAT: {
                 auto event = Core::Events::create_keyboard_event((uint64_t)key, (uint8_t)Core::Events::EventType::KeyboardRepeated);
-                if (data.pHandler) {
-                    data.pHandler->on_keyboard_event(event);
+                if (callback) {
+                    callback->on_keyboard_event(event);
                 }
                 break;
             }
 
             case GLFW_RELEASE: {
                 auto event = Core::Events::create_keyboard_event((uint64_t)key, (uint8_t)Core::Events::EventType::KeyboardReleased);
-                if (data.pHandler) {
-                    data.pHandler->on_keyboard_event(event);
+                if (callback) {
+                    callback->on_keyboard_event(event);
                 }
                 break;
             }
@@ -96,21 +102,22 @@ namespace OPEN_GL::Window {
 
         glfwSetMouseButtonCallback(pWindow, [](GLFWwindow* window, int button, int action, int mods) {
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
             switch (action)
             {
             case GLFW_PRESS:
             {
                 auto event = Core::Events::create_mouse_event(0xffff, 0xffff, uint8_t(button), (uint8_t)Core::Events::EventType::MousePressed);
-                if (data.pHandler) {
-                    data.pHandler->on_mouse_event(event);
+                if (callback) {
+                    callback->on_mouse_event(event);
                 }
                 break;
             }
 
             case GLFW_RELEASE: {
                 auto event = Core::Events::create_mouse_event(0xffff, 0xffff, uint8_t(button), (uint8_t)Core::Events::EventType::KeyboardReleased);
-                if (data.pHandler) {
-                    data.pHandler->on_mouse_event(event);
+                if (callback) {
+                    callback->on_mouse_event(event);
                 }
                 break;
             }
@@ -124,10 +131,10 @@ namespace OPEN_GL::Window {
 
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-            auto event = Core::Events::create_mouse_event(0xffff, 0xffff, 0x0000, (uint8_t)Core::Events::EventType::MouseMoved);
-
-            if (data.pHandler) {
-                data.pHandler->on_mouse_event(event);
+            auto event = Core::Events::create_mouse_event(positionX, positionY, 0x0000, (uint8_t)Core::Events::EventType::MouseMoved);
+            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
+            if (callback) {
+                callback->on_mouse_event(event);
             }
 
             });

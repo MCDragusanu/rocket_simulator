@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 namespace Core::Events {
 
@@ -41,43 +42,28 @@ namespace Core::Events {
 		/**
 		 * @brief Retrieve the event type from the last byte.
 		 */
-		friend	EventType getEventType(const Event& event) {
-			return static_cast<EventType>(event.bytes[sizeof(bytes) - 1]);
-		}
+		friend	EventType getEventType(const Event& event); 
 		/**
 		 * @brief Check if the event is a keyboard event.
 		 */
-		friend	bool isKeyboardEvent(const Event& event) {
-			EventType type = getEventType(event);
-			return (static_cast<uint8_t>(type) & 0b00000100) == 0b00000100;
-		}
+		friend	bool isKeyboardEvent(const Event& event); 
 		/**
 		 * @brief Check if the event is a mouse event.
 		 */
-		friend	bool isMouseEvent(const Event& event) {
-			EventType type = getEventType(event);
-			return (static_cast<uint8_t>(type) & 0b00001000) == 0b00001000;
-		}
+		friend	bool isMouseEvent(const Event& event);
 		/**
 		 * @brief Check if the event is a window event.
 		 */
-		friend	bool isWindowEvent(const Event& event) {
-			EventType type = getEventType(event);
-			return (static_cast<uint8_t>(type) & 0b00010000) == 0b00010000;
-		}
+		friend	bool isWindowEvent(const Event& event); 
 		/**
 		 * @brief Set the event type byte.
 		 */
-		friend void setEventByte(Event& event,uint8_t byte) {
-			event.bytes[sizeof(bytes) - 1] = byte;
-		}
+		friend void setEventByte(Event& event, uint8_t byte); 
 		/**
 		 * @brief Set the padding byte (the byte before the last one byte).
 		 * Used for mouse events to check what button has been pressed
 		 */
-		friend	void setPaddingByte(Event& event, uint8_t byte) {
-			event.bytes[sizeof(bytes) - 2] = byte;
-		}
+		friend	void setPaddingByte(Event& event, uint8_t byte);
 	};
 	/**
 	 * @brief Create a keyboard event.
@@ -85,13 +71,7 @@ namespace Core::Events {
 	 * @param event The event type (e.g., pressed, released).
 	 * @return A unique pointer to the created event.
 	 */
-	std::unique_ptr<Event> create_keyboard_event(long int key_code, unsigned char event) {
-		auto inst = std::make_unique<Event>();
-		inst->key_code = key_code;
-		setPaddingByte((*inst), 0x00);
-		setEventByte((*inst), event);
-		return inst;
-	}
+	std::unique_ptr<Event> create_keyboard_event(long int key_code, unsigned char event); 
 	/**
 	 * @brief Create a mouse event. First float in the mouseCoordinates field is the x-coordinate. The second float in the mouseCoordinates field is the y-coordinate.
 	 * @param mouseX The x-coordinate of the mouse. 
@@ -100,14 +80,7 @@ namespace Core::Events {
 	 * @param event The event type (e.g., pressed, moved).
 	 * @return A unique pointer to the created event.
 	 */
-	std::unique_ptr<Event> create_mouse_event(float mouseX, float mouseY, unsigned char button, unsigned char event) {
-		auto inst = std::make_unique<Event>();
-		inst->mouseCoordinates[0] = mouseX;
-		inst->mouseCoordinates[1] = mouseY;
-		setPaddingByte((*inst), button);
-		setEventByte((*inst), event);
-		return inst;
-	}
+	std::unique_ptr<Event> create_mouse_event(float mouseX, float mouseY, unsigned char button, unsigned char event);
 	/**
 	 * @brief Create a window event. First int in the windowSize field is the width. The second int in the windowSize field is height.
 	 * @param width The new width of the window.
@@ -115,14 +88,7 @@ namespace Core::Events {
 	 * @param event The event type (e.g., resized, focused).
 	 * @return A unique pointer to the created event.
 	 */
-	std::unique_ptr<Event>  create_window_event(unsigned int width, unsigned int height, unsigned char event) {
-		auto inst = std::make_unique<Event>();
-		inst->windowSize[0] = width;
-		inst->windowSize[1] = height;
-		setPaddingByte((*inst), 0x00);
-		setEventByte((*inst), event);
-		return inst;
-	}
+	std::unique_ptr<Event>  create_window_event(unsigned int width, unsigned int height, unsigned char event); 
 
 
 	struct WindowEventHandler {

@@ -10,7 +10,7 @@ namespace Core::gfx {
 		case RenderingAPI::None:
 			assert(false);
 			return nullptr;
-		case RenderingAPI::OpenGL: return new OPEN_GL::GFX::OpenGLVertexBuffer(data, byteSize);
+		case RenderingAPI::OpenGL: return new OpenGL::gfx::OpenGLVertexBuffer(data, byteSize);
 
 		}
 		return nullptr;
@@ -24,7 +24,7 @@ namespace Core::gfx {
 		case RenderingAPI::None:
 			assert(false);
 			return nullptr;
-		case RenderingAPI::OpenGL: return new OPEN_GL::GFX::OpenGLIndexBuffer(data, indexCount);
+		case RenderingAPI::OpenGL: return new OpenGL::gfx::OpenGLIndexBuffer(data, indexCount);
 
 		}
 		return nullptr;

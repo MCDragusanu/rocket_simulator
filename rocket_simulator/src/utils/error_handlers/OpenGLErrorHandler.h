@@ -60,24 +60,28 @@ public:
         }
     }
 
+    static OpenGLErrorHandler getInstance() {
+        static OpenGLErrorHandler _instance;
+        return _instance;
+    }
 private:
-   
+    
 
 } ;
 
-OpenGLErrorHandler openGlErrorHandler;
+
 
 #ifdef _DEBUG
 #define GL_CALL(function_call)                                                                      \
-        openGlErrorHandler.clear_errors();                                                          \
+        OpenGLErrorHandler::getInstance().clear_errors();                                                          \
         function_call;                                                                              \
-        {unsigned int last_error = openGlErrorHandler.get_current_error();                           \
+        {unsigned int last_error =  OpenGLErrorHandler::getInstance().get_current_error();                           \
         do {                                                                                        \
                                                                                                     \
             if (last_error != GL_NO_ERROR) {                                                        \
                 std::cout                                               \
                           << "[Error Code: " << last_error << "] "                                  \
-                          << openGlErrorHandler.translate_open_gl_error(last_error) << "\n"         \
+                          <<  OpenGLErrorHandler::getInstance().translate_open_gl_error(last_error) << "\n"         \
                           << "Line: " << __LINE__ << "\n"                                           \
                           << "File: " << __FILE__ << "\n";                                          \
             }                                                                                       \
