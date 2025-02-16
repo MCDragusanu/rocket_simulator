@@ -5,7 +5,8 @@
 #include "../../include/glad/glad.h"
 #include "../../include/glfw/glfw3.h"
 #include "../../core/events/EventHandler.h"
-
+#include "../input/OpenGLKeyboardMapper.h"
+#include "../input/OpenGLMouseCodeMapper.h"
 namespace OpenGL::Window {
 
 
@@ -38,6 +39,16 @@ namespace OpenGL::Window {
 
         this->pContext = std::make_shared< OpenGL::gfx::OpenGLContext>(pWindow);
         pContext->init();
+        const auto framebuffer_size_callback = [](GLFWwindow* window, int width, int height) {
+            glViewport(0, 0, width, height);
+        };
+
+        auto callback_status = glfwSetFramebufferSizeCallback(pWindow, framebuffer_size_callback);
+        if (!callback_status) {
+            std::cerr << "Failed to set Frame Buffer Size Callback << " << "\n";
+        }
+
+        glViewport(0, 0, 800, 600);
 
         glfwSetWindowUserPointer(pWindow, &mData);
 
@@ -48,7 +59,7 @@ namespace OpenGL::Window {
             data.attributes.height = height;
 
             auto event = Core::Events::create_window_event(width, height, (uint8_t)Core::Events::EventType::WindowResized);
-            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
+            auto callback = (Core::Events::EventCallback*)(data.pHandler);
             if (callback != nullptr) {
                 callback->on_window_event(event);
             }
@@ -59,7 +70,7 @@ namespace OpenGL::Window {
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
             auto event = Core::Events::create_window_event(data.attributes.width, data.attributes.height, (uint8_t)Core::Events::EventType::WindowClosed);
-            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
+            auto callback = (Core::Events::EventCallback*)(data.pHandler);
             if (callback != nullptr) {
                 callback->on_window_event(event);
             }
@@ -67,12 +78,12 @@ namespace OpenGL::Window {
 
         glfwSetKeyCallback(pWindow, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
+            auto callback = (Core::Events::EventCallback*)(data.pHandler);
             switch (action)
             {
             case GLFW_PRESS:
             {
-                auto event = Core::Events::create_keyboard_event((uint64_t)key, (uint8_t)Core::Events::EventType::KeyboardPressed);
+                auto event = Core::Events::create_keyboard_event(OpenGL::Input::OpenGLKeyCodeMapper::getInstance().translateCode(key), (uint8_t)Core::Events::EventType::KeyboardPressed);
                 if (callback) {
                     callback->on_keyboard_event(event);
                 }
@@ -80,7 +91,7 @@ namespace OpenGL::Window {
             }
 
             case GLFW_REPEAT: {
-                auto event = Core::Events::create_keyboard_event((uint64_t)key, (uint8_t)Core::Events::EventType::KeyboardRepeated);
+                auto event = Core::Events::create_keyboard_event(OpenGL::Input::OpenGLKeyCodeMapper::getInstance().translateCode(key), (uint8_t)Core::Events::EventType::KeyboardRepeated);
                 if (callback) {
                     callback->on_keyboard_event(event);
                 }
@@ -88,7 +99,7 @@ namespace OpenGL::Window {
             }
 
             case GLFW_RELEASE: {
-                auto event = Core::Events::create_keyboard_event((uint64_t)key, (uint8_t)Core::Events::EventType::KeyboardReleased);
+                auto event = Core::Events::create_keyboard_event(OpenGL::Input::OpenGLKeyCodeMapper::getInstance().translateCode(key), (uint8_t)Core::Events::EventType::KeyboardReleased);
                 if (callback) {
                     callback->on_keyboard_event(event);
                 }
@@ -102,12 +113,12 @@ namespace OpenGL::Window {
 
         glfwSetMouseButtonCallback(pWindow, [](GLFWwindow* window, int button, int action, int mods) {
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
+            auto callback = (Core::Events::EventCallback*)(data.pHandler);
             switch (action)
             {
             case GLFW_PRESS:
             {
-                auto event = Core::Events::create_mouse_event(0xffff, 0xffff, uint8_t(button), (uint8_t)Core::Events::EventType::MousePressed);
+                auto event = Core::Events::create_mouse_event(data.prevMouseX, data.prevMouseY, OpenGL::Input::OpenGLMouseButtonMapper::getInstance().translateCode(button), (uint8_t)Core::Events::EventType::MousePressed);
                 if (callback) {
                     callback->on_mouse_event(event);
                 }
@@ -115,7 +126,7 @@ namespace OpenGL::Window {
             }
 
             case GLFW_RELEASE: {
-                auto event = Core::Events::create_mouse_event(0xffff, 0xffff, uint8_t(button), (uint8_t)Core::Events::EventType::KeyboardReleased);
+                auto event = Core::Events::create_mouse_event(data.prevMouseX, data.prevMouseY, OpenGL::Input::OpenGLMouseButtonMapper::getInstance().translateCode(button), (uint8_t)Core::Events::EventType::KeyboardReleased);
                 if (callback) {
                     callback->on_mouse_event(event);
                 }
@@ -130,9 +141,10 @@ namespace OpenGL::Window {
         glfwSetCursorPosCallback(pWindow, [](GLFWwindow* window, double positionX, double positionY) {
 
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-
-            auto event = Core::Events::create_mouse_event(positionX, positionY, 0x0000, (uint8_t)Core::Events::EventType::MouseMoved);
-            auto callback = (Core::Events::WindowEventHandler*)(data.pHandler);
+            data.prevMouseX = positionX;
+            data.prevMouseY = positionY;
+            auto event = Core::Events::create_mouse_event(positionX, positionY, OpenGL::Input::OpenGLMouseButtonMapper::getInstance().translateCode(-1), (uint8_t)Core::Events::EventType::MouseMoved);
+            auto callback = (Core::Events::EventCallback*)(data.pHandler);
             if (callback) {
                 callback->on_mouse_event(event);
             }

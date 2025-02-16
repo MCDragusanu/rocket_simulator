@@ -17,10 +17,7 @@ namespace OpenGL::ShadersApi {
 	OpenGLFragmentShader::OpenGLFragmentShader(const std::filesystem::path& filePath)
 	{
 		std::stringstream buffer;
-		auto stream = std::ifstream(filePath);
-		if (not stream) {
-			throw std::invalid_argument("Failed to open file : " + filePath.string());
-		}
+		auto stream = std::ifstream();
 		stream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		stream.open(filePath);
 		buffer << stream.rdbuf();
@@ -34,7 +31,7 @@ namespace OpenGL::ShadersApi {
 
 	bool OpenGLFragmentShader::compile(std::ostream& outputLog)
 	{
-		unsigned int shaderType = GL_GEOMETRY_SHADER;
+		unsigned int shaderType = GL_FRAGMENT_SHADER;
 		auto sourceCode = mSourceCode.c_str();
 		GL_CALL(this->mShaderUid = glCreateShader(shaderType));
 		GL_CALL(glShaderSource(mShaderUid, 1, &sourceCode, nullptr));

@@ -3,6 +3,51 @@
 
 namespace Core::Events {
 
+	enum class KeyCode : long int {
+		// Letters
+		A = 0, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
+
+		// Digits
+		Digit0, Digit1, Digit2, Digit3, Digit4, Digit5, Digit6, Digit7, Digit8, Digit9,
+
+		// Function keys
+		F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12,
+
+		// Control keys
+		Escape, Tab, CapsLock, Shift, Control, Alt, Space, Enter, Backspace, Delete, Insert,
+
+		// Arrow keys
+		ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
+
+		// Special keys
+		Home, End, PageUp, PageDown, PrintScreen, ScrollLock, PauseBreak,
+
+		// Numpad keys
+		NumLock, Numpad0, Numpad1, Numpad2, Numpad3, Numpad4, Numpad5, Numpad6, Numpad7, Numpad8, Numpad9,
+		NumpadAdd, NumpadSubtract, NumpadMultiply, NumpadDivide, NumpadEnter, NumpadDecimal,
+
+		// Symbols
+		Semicolon, Equal, Comma, Minus, Period, Slash, Backtick,
+		LeftBracket, Backslash, RightBracket, Apostrophe,
+
+		// Meta keys
+		LeftShift, RightShift, LeftControl, RightControl, LeftAlt, RightAlt, LeftMeta, RightMeta,
+
+		// Maximum value (useful for iteration)
+		Count
+	};
+
+	enum class MouseButton : uint8_t {
+		Left = 0,
+		Right,
+		Middle,
+		Button4,
+		Button5,
+		Button6,
+		Button7,
+		Button8,
+		Count
+	};
 
 	/**
 	 * @brief Enum representing different types of events.
@@ -71,7 +116,7 @@ namespace Core::Events {
 	 * @param event The event type (e.g., pressed, released).
 	 * @return A unique pointer to the created event.
 	 */
-	std::unique_ptr<Event> create_keyboard_event(long int key_code, unsigned char event); 
+	std::unique_ptr<Event> create_keyboard_event(KeyCode keyCode, unsigned char event); 
 	/**
 	 * @brief Create a mouse event. First float in the mouseCoordinates field is the x-coordinate. The second float in the mouseCoordinates field is the y-coordinate.
 	 * @param mouseX The x-coordinate of the mouse. 
@@ -80,7 +125,7 @@ namespace Core::Events {
 	 * @param event The event type (e.g., pressed, moved).
 	 * @return A unique pointer to the created event.
 	 */
-	std::unique_ptr<Event> create_mouse_event(float mouseX, float mouseY, unsigned char button, unsigned char event);
+	std::unique_ptr<Event> create_mouse_event(float mouseX, float mouseY, MouseButton button, unsigned char event);
 	/**
 	 * @brief Create a window event. First int in the windowSize field is the width. The second int in the windowSize field is height.
 	 * @param width The new width of the window.
@@ -90,8 +135,15 @@ namespace Core::Events {
 	 */
 	std::unique_ptr<Event>  create_window_event(unsigned int width, unsigned int height, unsigned char event); 
 
+	struct KeyCodeMapper {
+		virtual KeyCode translateCode(long int keyCode) = 0;
+	};
 
-	struct WindowEventHandler {
+	struct MouseButtonMapper {
+		virtual MouseButton translateCode(int keyCode) = 0;
+	};
+
+	struct EventCallback {
 		virtual void on_window_event(const std::unique_ptr<Event>& event) = 0;
 		virtual void on_keyboard_event(const std::unique_ptr<Event>& event) = 0;
 		virtual void on_mouse_event(const std::unique_ptr<Event>& event) = 0;

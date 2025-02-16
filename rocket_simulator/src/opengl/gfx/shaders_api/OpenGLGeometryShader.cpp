@@ -17,7 +17,7 @@ namespace OpenGL::ShadersApi {
 	OpenGLGeometryShader::OpenGLGeometryShader(const std::filesystem::path& filePath)
 	{
 		std::stringstream buffer;
-		auto stream = std::ifstream(filePath);
+		auto stream = std::ifstream();
 		if (not stream) {
 			throw std::invalid_argument("Failed to open file : " + filePath.string());
 		}

@@ -1,6 +1,4 @@
 #include "OpenGLBuffer.h"
-#include "../../../include/glad/glad.h"
-#include "../../../include/glfw/glfw3.h"
 #include "../../utils/error_handlers/OpenGLErrorHandler.h"
 namespace OpenGL :: gfx {
 	
@@ -24,6 +22,38 @@ namespace OpenGL :: gfx {
 	void OpenGLVertexBuffer::unBind()
 	{
 		GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	}
+
+	void OpenGLVertexBuffer::setLayout(const Core::gfx::BufferLayout& layout)
+	{
+		this->layout = layout;
+	}
+
+	const Core::gfx::BufferLayout& OpenGLVertexBuffer::getLayout() const noexcept
+	{
+		return this->layout;
+	}
+
+	 GLenum OpenGLVertexBuffer::dataTypeConverter(Core::gfx::DataType type) 
+	{
+		switch (type)
+		{
+		case Core::gfx::DataType::Float:    return GL_FLOAT;
+		case Core::gfx::DataType::Float2:   return GL_FLOAT;
+		case Core::gfx::DataType::Float3:   return GL_FLOAT;
+		case Core::gfx::DataType::Float4:   return GL_FLOAT;
+		case Core::gfx::DataType::Mat2:     return GL_FLOAT;
+		case Core::gfx::DataType::Mat3:     return GL_FLOAT;
+		case Core::gfx::DataType::Mat4:     return GL_FLOAT;
+		case Core::gfx::DataType::Int:      return GL_INT;
+		case Core::gfx::DataType::Int2:     return GL_INT;
+		case Core::gfx::DataType::Int3:     return GL_INT;
+		case Core::gfx::DataType::Int4:     return GL_INT;
+		case Core::gfx::DataType::None:
+		default:return 0;
+
+		}
+		
 	}
 
 

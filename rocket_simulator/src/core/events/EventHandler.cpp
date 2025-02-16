@@ -2,7 +2,7 @@
 namespace Core::Events {
 	EventType Core::Events::getEventType(const Event& event)
 	{
-		return static_cast<EventType>(event.bytes[sizeof(event.bytes) - 1]);
+		return static_cast<EventType>(event.bytes[9]);
 	}
 	bool isKeyboardEvent(const Event& event)
 	{
@@ -21,26 +21,26 @@ namespace Core::Events {
 	}
 	void setEventByte(Event& event, uint8_t byte)
 	{
-		event.bytes[sizeof(event.bytes) - 1] = byte;
+		event.bytes[9] = byte;
 	}
 	void setPaddingByte(Event& event, uint8_t byte)
 	{
-		event.bytes[sizeof(event.bytes) - 2] = byte;
+		event.bytes[8] = byte;
 	}
-	std::unique_ptr<Event> create_keyboard_event(long int key_code, unsigned char event)
+	std::unique_ptr<Event> create_keyboard_event(KeyCode keyCode, unsigned char event)
 	{
 		auto inst = std::make_unique<Event>();
-		inst->key_code = key_code;
+		inst->key_code = (long int)keyCode;
 		setPaddingByte((*inst), 0x00);
 		setEventByte((*inst), event);
 		return inst;
 	}
-	std::unique_ptr<Event> create_mouse_event(float mouseX, float mouseY, unsigned char button, unsigned char event)
+	std::unique_ptr<Event> create_mouse_event(float mouseX, float mouseY, MouseButton button, unsigned char event)
 	{
 		auto inst = std::make_unique<Event>();
 		inst->mouseCoordinates[0] = mouseX;
 		inst->mouseCoordinates[1] = mouseY;
-		setPaddingByte((*inst), button);
+		setPaddingByte((*inst), (uint8_t)button);
 		setEventByte((*inst), event);
 		return inst;
 	}

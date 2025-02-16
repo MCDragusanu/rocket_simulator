@@ -28,6 +28,8 @@ namespace OpenGL::ShadersApi {
         validateState({ Core::gfx::shaders::PipeLineState::Created,
                       Core::gfx::shaders::PipeLineState::Linked });
 
+        std::cerr << "Vaidation State Passed" << "\n";
+        std::cerr << "programUid : " << mProgramId << "\n";
         std::vector<unsigned int> attachedShaders;
         try {
             attachStarted();
@@ -38,17 +40,36 @@ namespace OpenGL::ShadersApi {
                 }
 
                 unsigned int shaderUid = extractShaderUid(shaderPtr);
-                if (shaderUid ==0) {
+                std::cerr << "ShaderUid = " << shaderUid << "\n";
+                if (shaderUid == 0) {
                     throw Core::gfx::shaders::ShaderPipelineException("Invalid shader type");
                 }
 
                 GL_CALL(glAttachShader(mProgramId, shaderUid));
                 attachedShaders.push_back(shaderUid);
+                std::cerr << "Attached a shader!" << "\n";
+
+
+            }
+            std::cerr << "Preparing Linking!" << "\n";
+            GL_CALL(glLinkProgram(mProgramId));
+
+            int success;
+            glGetProgramiv(mProgramId, GL_LINK_STATUS, &success);
+
+            if (!success) {
+                std::cerr << "Failed Linking!" << "\n";
+                std::string infoLog = getProgramInfoLog();
+                std::cerr << infoLog;
+                throw Core::gfx::shaders::ShaderPipelineException("Link failed: " + infoLog);
+            }
+            else {
+                std::cerr << "Shader Linked!" << "\n";
             }
 
             attachCompleted();
-            linkPrograms(attachedShaders);
-
+            std::cerr << "Linking finished!" << "\n";
+            mCurrentState = Core::gfx::shaders::PipeLineState::Linked;
         }
         catch (...) {
             for (auto shaderId : attachedShaders) {
@@ -58,14 +79,18 @@ namespace OpenGL::ShadersApi {
         }
     }
 
+    
     void OpenGLShaderPipeline::linkPrograms(const std::vector<unsigned int>& shaderIds) {
+        /*std::cerr << "Preparing Linking!" << "\n";
         GL_CALL(glLinkProgram(mProgramId));
 
         int success;
         glGetProgramiv(mProgramId, GL_LINK_STATUS, &success);
 
         if (!success) {
+            std::cerr << "Failed Linking!" << "\n";
             std::string infoLog = getProgramInfoLog();
+            std::cerr << infoLog;
             throw Core::gfx::shaders::ShaderPipelineException("Link failed: " + infoLog);
         }
 
@@ -75,7 +100,9 @@ namespace OpenGL::ShadersApi {
         }
 
         mCurrentState = Core::gfx::shaders::PipeLineState::Linked;
+        std::cerr << "Linking Completed!" << "\n";*/
     }
+
 
     void OpenGLShaderPipeline::bind() {
         validateState({ Core::gfx::shaders::PipeLineState::Linked });
@@ -128,7 +155,7 @@ namespace OpenGL::ShadersApi {
     }
 
     std::string OpenGLShaderPipeline::getProgramInfoLog() const {
-        int logLength;
+        int logLength = 512;
         glGetProgramiv(mProgramId, GL_INFO_LOG_LENGTH, &logLength);
 
         if (logLength > 0) {

@@ -5,7 +5,9 @@
 
 
 namespace OpenGL::Window {
-	
+   
+
+
 	class OpenGLWindow : public Core::Window::MainWindow
 	{
 	public:
@@ -21,5 +23,4 @@ namespace OpenGL::Window {
 		std::shared_ptr<OpenGL::gfx::OpenGLContext> pContext;
 	};
 }
-
 

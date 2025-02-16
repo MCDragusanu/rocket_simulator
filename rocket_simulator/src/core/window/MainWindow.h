@@ -25,7 +25,12 @@ namespace Core::Window {
 		inline void setEventHandler(void* handler) { 
 			this->mData.pHandler = handler;
 		}
-		
+		inline void setKeyCodeMapper(void* mapper) {
+			this->mData.mKeyCodeMapper = mapper;
+		}
+		inline void setMouseButtonMapper(void* mapper) {
+			this->mData.mMouseCodeMapper = mapper;
+		}
 		inline auto getEventHandler() const noexcept {
 			return this->mData.pHandler;
 		}
@@ -43,7 +48,11 @@ namespace Core::Window {
 		};
 		struct WindowData {
 			WindowAttributes attributes = {};
-			void* pHandler = { nullptr };
+			void* pHandler = { nullptr };	
+			void* mKeyCodeMapper = { nullptr };
+			void* mMouseCodeMapper = { nullptr };
+			int prevMouseX = { 0 };
+			int prevMouseY = { 0 };
 		};
 		WindowData mData;
 	
