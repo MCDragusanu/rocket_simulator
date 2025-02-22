@@ -3,7 +3,7 @@
 
 class Layer;
 
-namespace Core::gfx {
+namespace Core::UserInterface {
 
 	class LayerStack {
 	public:

@@ -1,15 +1,14 @@
 #pragma once
 #include <assert.h>
-#include "../window/MainWindow.h"
 
 
-namespace Core::gfx {
+namespace Core::Gfx::RenderingSystem {
 	enum class RenderingAPI {
 		OpenGL,
 		DirectX,
 		None
 	};
-	class GraphicsContext
+	class RenderContext
 	{
 	public:
 		virtual void init() = 0;
@@ -20,7 +19,7 @@ namespace Core::gfx {
 			return instance->getRenderingAPIUsed();
 		}
 	protected:
-		static GraphicsContext* instance;
+		static RenderContext* instance;
 		virtual RenderingAPI getRenderingAPIUsed()const noexcept = 0;
 	};
 };

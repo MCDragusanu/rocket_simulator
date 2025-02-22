@@ -3,7 +3,7 @@
 #include <vector>
 
 
-namespace Core::gfx {
+namespace Core::Gfx {
 
 	enum class DataType {
 		None = 0,
@@ -19,6 +19,7 @@ namespace Core::gfx {
 		Int3,
 		Int4
 	};
+
 	struct BufferLayoutElement {
 		std::string tag;
 		DataType type;

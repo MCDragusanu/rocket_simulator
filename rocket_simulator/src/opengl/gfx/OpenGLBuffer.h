@@ -2,25 +2,25 @@
 #include "../../core/gfx/Buffer.h"
 #include "../../../include/glad/glad.h"
 #include "../../../include/glfw/glfw3.h"
-namespace OpenGL::gfx {
+namespace OpenGL::Gfx {
 	
 	
-	class OpenGLVertexBuffer : public Core :: gfx :: VertexBuffer
+	class OpenGLVertexBuffer : public Core :: Gfx :: VertexBuffer
 	{
 	public:
 		OpenGLVertexBuffer(float* data, size_t byteSize);
 		~OpenGLVertexBuffer();
 		void bind() override;
 		void unBind()override;
-		void setLayout(const Core::gfx::BufferLayout& layout) override;
-		const Core::gfx::BufferLayout& getLayout()const noexcept override;
-		static  GLenum dataTypeConverter(Core::gfx::DataType type);
+		void setLayout(const Core::Gfx::BufferLayout& layout) override;
+		const Core::Gfx::BufferLayout& getLayout()const noexcept override;
+		static  GLenum dataTypeConverter(Core::Gfx::DataType type);
 	protected:
 		unsigned int resourceUid;	
-		Core::gfx::BufferLayout layout;
+		Core::Gfx::BufferLayout layout;
 	};
 
-	class OpenGLIndexBuffer : public Core::gfx::IndexBuffer {
+	class OpenGLIndexBuffer : public Core::Gfx::IndexBuffer {
 	public:
 		
 		OpenGLIndexBuffer(unsigned int * data, size_t indexCount);

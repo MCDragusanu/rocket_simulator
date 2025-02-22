@@ -37,23 +37,14 @@ namespace OpenGL::Window {
             exit(2);
         }
 
-        this->pContext = std::make_shared< OpenGL::gfx::OpenGLContext>(pWindow);
+        this->pContext = std::make_shared< OpenGL::Gfx::RenderingSystem::OpenGLContext>(pWindow);
         pContext->init();
-        const auto framebuffer_size_callback = [](GLFWwindow* window, int width, int height) {
-            glViewport(0, 0, width, height);
-        };
-
-        auto callback_status = glfwSetFramebufferSizeCallback(pWindow, framebuffer_size_callback);
-        if (!callback_status) {
-            std::cerr << "Failed to set Frame Buffer Size Callback << " << "\n";
-        }
-
-        glViewport(0, 0, 800, 600);
+       
 
         glfwSetWindowUserPointer(pWindow, &mData);
 
         glfwSetWindowSizeCallback(pWindow, [](GLFWwindow* window, int width, int height) {
-
+             
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
             data.attributes.width = width;
             data.attributes.height = height;

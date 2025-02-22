@@ -5,23 +5,23 @@
 #include "../../../include/glfw/glfw3.h"
 #include <assert.h>
 #include <iostream>
-OpenGL::gfx::OpenGLVertexArray::OpenGLVertexArray() : mVertexBufferList() , mIndexBuffer() , mVertexArrayUid(-1)
+OpenGL::Gfx::OpenGLVertexArray::OpenGLVertexArray() : mVertexBufferList() , mIndexBuffer() , mVertexArrayUid(-1)
 {
 	glGenVertexArrays(1, &this->mVertexArrayUid);
 
 }
 
-void OpenGL::gfx::OpenGLVertexArray::bind()
+void OpenGL::Gfx::OpenGLVertexArray::bind()
 {
 	glBindVertexArray(mVertexArrayUid);
 }
 
-void OpenGL::gfx::OpenGLVertexArray::unBind()
+void OpenGL::Gfx::OpenGLVertexArray::unBind()
 {
 	glBindVertexArray(0);
 }
 
-void OpenGL::gfx::OpenGLVertexArray::addVertexBuffer(const std::shared_ptr<Core::gfx::VertexBuffer>& buffer)
+void OpenGL::Gfx::OpenGLVertexArray::addVertexBuffer(const std::shared_ptr<Core::Gfx::VertexBuffer>& buffer)
 {
 	glBindVertexArray(mVertexArrayUid);
 	buffer->bind();
@@ -33,7 +33,7 @@ void OpenGL::gfx::OpenGLVertexArray::addVertexBuffer(const std::shared_ptr<Core:
 	for (const auto& element : layout) {
 		
 		auto elementCount = element.getElementCount();
-		auto dataType = OpenGL::gfx::OpenGLVertexBuffer::dataTypeConverter(element.type);
+		auto dataType = OpenGL::Gfx::OpenGLVertexBuffer::dataTypeConverter(element.type);
 		auto isNormalised = element.normalised ? GL_TRUE : GL_FALSE;
 		auto stride = layout.getStride();
 		auto elementOffset = (const void*)element.offset;
@@ -55,9 +55,14 @@ void OpenGL::gfx::OpenGLVertexArray::addVertexBuffer(const std::shared_ptr<Core:
 	mVertexBufferList.push_back(buffer);
 }
 
-void OpenGL::gfx::OpenGLVertexArray::addIndexBuffer(const std::shared_ptr<Core::gfx::IndexBuffer>& buffer)
+void OpenGL::Gfx::OpenGLVertexArray::addIndexBuffer(const std::shared_ptr<Core::Gfx::IndexBuffer>& buffer)
 {
 	glBindVertexArray(mVertexArrayUid);
 	buffer->bind();
 	mIndexBuffer = buffer;
+}
+
+const Core::Gfx::IndexBuffer* OpenGL::Gfx::OpenGLVertexArray::getIndexBuffer() const noexcept
+{
+	return this->mIndexBuffer.get();
 }

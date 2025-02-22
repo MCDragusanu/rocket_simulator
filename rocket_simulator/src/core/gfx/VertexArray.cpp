@@ -1,15 +1,15 @@
 #include "VertexArray.h"
-#include "GraphicsContext.h"
+#include "../gfx/renderer_api/RenderContext.h"
 #include "../../opengl/gfx/OpenGLVertexArray.h"
-namespace Core::gfx {
+namespace Core::Gfx {
 
-	VertexArray* Core::gfx::VertexArray::create()
+	VertexArray* Core::Gfx::VertexArray::create()
 	{
-		switch (Core::gfx::GraphicsContext::getAPI())
+		switch (Core::Gfx::RenderingSystem::RenderContext::getAPI())
 		{
-		case Core::gfx::RenderingAPI::OpenGL: return new OpenGL::gfx::OpenGLVertexArray();
-		default:
-			break;
+		case Core::Gfx::RenderingSystem::RenderingAPI::OpenGL: return new OpenGL::Gfx::OpenGLVertexArray();
+		default:return nullptr;
+			
 		}
 	}
 }

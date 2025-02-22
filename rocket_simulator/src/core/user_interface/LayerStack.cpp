@@ -1,5 +1,5 @@
 #include "LayerStack.h"
-namespace Core::gfx {
+namespace Core::UserInterface {
 
 
 	LayerStack::LayerStack()

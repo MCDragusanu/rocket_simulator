@@ -3,10 +3,10 @@
 #include <iostream>
 #include <sstream>
 #include "OpenGLContext.h"
-#include "../../../include/glad/glad.h"
-#include "../../../include/glfw/glfw3.h"
+#include "../../../../include/glad/glad.h"
+#include "../../../../include/glfw/glfw3.h"
 
-namespace OpenGL::gfx {
+namespace OpenGL::Gfx::RenderingSystem {
 	OpenGLContext::OpenGLContext(GLFWwindow* window) : mWindowHandle(window)
 	{
 		assert(mWindowHandle != nullptr);
@@ -26,7 +26,7 @@ namespace OpenGL::gfx {
 			exit(0);
 		}
 
-		Core::gfx::GraphicsContext::instance = this;
+		Core::Gfx:: RenderingSystem::RenderContext::instance = this;
 	}
 
 	void OpenGLContext::swap_buffers()

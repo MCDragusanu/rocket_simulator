@@ -19,26 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\gfx\renderer_api\Renderer.cpp" />
     <ClCompile Include="src\opengl\gfx\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\opengl\gfx\renderer_api\OpenGLRenderer.cpp" />
     <ClCompile Include="src\opengl\input\OpenGLMouseCodeMapper.cpp" />
     <ClCompile Include="src\core\events\EventHandler.cpp" />
     <ClCompile Include="src\core\gfx\Buffer.cpp" />
-    <ClCompile Include="src\core\gfx\GraphicsContext.cpp" />
+    <ClCompile Include="src\core\gfx\renderer_api\RenderContext.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLGeometryShader.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLFragmentShader.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLVertexShader.cpp" />
     <ClCompile Include="src\opengl\gfx\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\core\gfx\LayerStack.cpp" />
+    <ClCompile Include="src\core\user_interface\LayerStack.cpp" />
     <ClCompile Include="src\opengl\input\OpenGLKeyboardMapper.cpp" />
     <ClCompile Include="src\opengl\window\OpenGLWindow.cpp" />
-    <ClCompile Include="src\opengl\gfx\OpenGLContext.cpp" />
+    <ClCompile Include="src\opengl\gfx\renderer_api\OpenGLContext.cpp" />
     <ClCompile Include="src\glad\glad.c" />
     <ClCompile Include="src\utils\logging\ConsoleLogger.cpp" />
     <ClCompile Include="src\core\gfx\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\gfx\camera_api\Camera.h" />
+    <ClInclude Include="src\core\gfx\entity_api\Entity.h" />
+    <ClInclude Include="src\core\gfx\renderer_api\Renderer.h" />
+    <ClInclude Include="src\core\gfx\scene_api\Scene.h" />
     <ClInclude Include="src\opengl\gfx\OpenGLVertexArray.h" />
+    <ClInclude Include="src\opengl\gfx\renderer_api\OpenGLRenderer.h" />
     <ClInclude Include="src\opengl\input\OpenGLMouseCodeMapper.h" />
     <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.h" />
     <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLGeometryShader.h" />
@@ -48,14 +55,14 @@
     <ClInclude Include="src\core\gfx\shaders_api\ShaderPipeline.h" />
     <ClInclude Include="src\opengl\gfx\OpenGLBuffer.h" />
     <ClInclude Include="src\core\gfx\Buffer.h" />
-    <ClInclude Include="src\core\gfx\Layer.h" />
-    <ClInclude Include="src\core\gfx\LayerStack.h" />
+    <ClInclude Include="src\core\user_interface\Layer.h" />
+    <ClInclude Include="src\core\user_interface\LayerStack.h" />
     <ClInclude Include="src\opengl\input\OpenGLKeyboardMapper.h" />
     <ClInclude Include="src\opengl\window\OpenGLWindow.h" />
     <ClInclude Include="src\core\events\EventHandler.h" />
     <ClInclude Include="src\core\window\MainWindow.h" />
-    <ClInclude Include="src\opengl\gfx\OpenGLContext.h" />
-    <ClInclude Include="src\core\gfx\GraphicsContext.h" />
+    <ClInclude Include="src\opengl\gfx\renderer_api\OpenGLContext.h" />
+    <ClInclude Include="src\core\gfx\renderer_api\RenderContext.h" />
     <ClInclude Include="src\utils\error_handlers\OpenGLErrorHandler.h" />
     <ClInclude Include="src\utils\logging\ConsoleLogger.h" />
     <ClInclude Include="src\core\gfx\VertexArray.h" />

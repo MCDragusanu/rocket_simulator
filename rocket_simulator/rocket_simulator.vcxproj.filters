@@ -54,13 +54,13 @@
     <ClCompile Include="src\glad\glad.c">
       <Filter>Source Files\Glad</Filter>
     </ClCompile>
-    <ClCompile Include="src\opengl\gfx\OpenGLContext.cpp">
+    <ClCompile Include="src\opengl\gfx\renderer_api\OpenGLContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\opengl\window\OpenGLWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\gfx\LayerStack.cpp">
+    <ClCompile Include="src\core\user_interface\LayerStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\opengl\gfx\OpenGLBuffer.cpp">
@@ -81,7 +81,7 @@
     <ClCompile Include="src\core\gfx\Buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\gfx\GraphicsContext.cpp">
+    <ClCompile Include="src\core\gfx\renderer_api\RenderContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\core\events\EventHandler.cpp">
@@ -99,6 +99,12 @@
     <ClCompile Include="src\opengl\gfx\OpenGLVertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\opengl\gfx\renderer_api\OpenGLRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\gfx\renderer_api\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\utils\logging\ConsoleLogger.h">
@@ -107,10 +113,10 @@
     <ClInclude Include="src\utils\error_handlers\OpenGLErrorHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\opengl\gfx\OpenGLContext.h">
+    <ClInclude Include="src\opengl\gfx\renderer_api\OpenGLContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\gfx\GraphicsContext.h">
+    <ClInclude Include="src\core\gfx\renderer_api\RenderContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\core\events\EventHandler.h">
@@ -122,10 +128,10 @@
     <ClInclude Include="src\opengl\window\OpenGLWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\gfx\Layer.h">
+    <ClInclude Include="src\core\user_interface\Layer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\gfx\LayerStack.h">
+    <ClInclude Include="src\core\user_interface\LayerStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\core\gfx\Buffer.h">
@@ -162,6 +168,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\opengl\gfx\OpenGLVertexArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\scene_api\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\camera_api\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\entity_api\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\renderer_api\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\gfx\renderer_api\OpenGLRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,7 @@
 #include <string>
 #include "../events/EventHandler.h"
 
-namespace Core::gfx {
+namespace Core::UserInterface {
     
 	class Layer {
 		

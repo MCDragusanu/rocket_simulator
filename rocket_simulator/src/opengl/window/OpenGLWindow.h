@@ -1,7 +1,7 @@
 #pragma once
 #include "../../core/window/MainWindow.h"
 
-#include "../gfx/OpenGLContext.h"
+#include "../gfx/renderer_api/OpenGLContext.h"
 
 
 namespace OpenGL::Window {
@@ -20,7 +20,7 @@ namespace OpenGL::Window {
 		}
 	private:
 		GLFWwindow* pWindow = { nullptr };
-		std::shared_ptr<OpenGL::gfx::OpenGLContext> pContext;
+		std::shared_ptr<OpenGL::Gfx::RenderingSystem::OpenGLContext> pContext;
 	};
 }
 

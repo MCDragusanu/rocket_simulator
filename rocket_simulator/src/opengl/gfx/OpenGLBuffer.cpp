@@ -1,6 +1,6 @@
 #include "OpenGLBuffer.h"
 #include "../../utils/error_handlers/OpenGLErrorHandler.h"
-namespace OpenGL :: gfx {
+namespace OpenGL :: Gfx {
 	
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* data, size_t byteSize)
 	{
@@ -24,32 +24,32 @@ namespace OpenGL :: gfx {
 		GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 	}
 
-	void OpenGLVertexBuffer::setLayout(const Core::gfx::BufferLayout& layout)
+	void OpenGLVertexBuffer::setLayout(const Core::Gfx::BufferLayout& layout)
 	{
 		this->layout = layout;
 	}
 
-	const Core::gfx::BufferLayout& OpenGLVertexBuffer::getLayout() const noexcept
+	const Core::Gfx::BufferLayout& OpenGLVertexBuffer::getLayout() const noexcept
 	{
 		return this->layout;
 	}
 
-	 GLenum OpenGLVertexBuffer::dataTypeConverter(Core::gfx::DataType type) 
+	 GLenum OpenGLVertexBuffer::dataTypeConverter(Core::Gfx::DataType type) 
 	{
 		switch (type)
 		{
-		case Core::gfx::DataType::Float:    return GL_FLOAT;
-		case Core::gfx::DataType::Float2:   return GL_FLOAT;
-		case Core::gfx::DataType::Float3:   return GL_FLOAT;
-		case Core::gfx::DataType::Float4:   return GL_FLOAT;
-		case Core::gfx::DataType::Mat2:     return GL_FLOAT;
-		case Core::gfx::DataType::Mat3:     return GL_FLOAT;
-		case Core::gfx::DataType::Mat4:     return GL_FLOAT;
-		case Core::gfx::DataType::Int:      return GL_INT;
-		case Core::gfx::DataType::Int2:     return GL_INT;
-		case Core::gfx::DataType::Int3:     return GL_INT;
-		case Core::gfx::DataType::Int4:     return GL_INT;
-		case Core::gfx::DataType::None:
+		case Core::Gfx::DataType::Float:    return GL_FLOAT;
+		case Core::Gfx::DataType::Float2:   return GL_FLOAT;
+		case Core::Gfx::DataType::Float3:   return GL_FLOAT;
+		case Core::Gfx::DataType::Float4:   return GL_FLOAT;
+		case Core::Gfx::DataType::Mat2:     return GL_FLOAT;
+		case Core::Gfx::DataType::Mat3:     return GL_FLOAT;
+		case Core::Gfx::DataType::Mat4:     return GL_FLOAT;
+		case Core::Gfx::DataType::Int:      return GL_INT;
+		case Core::Gfx::DataType::Int2:     return GL_INT;
+		case Core::Gfx::DataType::Int3:     return GL_INT;
+		case Core::Gfx::DataType::Int4:     return GL_INT;
+		case Core::Gfx::DataType::None:
 		default:return 0;
 
 		}
