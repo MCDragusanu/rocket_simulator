@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../core/gfx/renderer_api/Renderer.h"
+#include "../../../core/Gfx/renderer_api/Renderer.h"
 #include "OpenGLContext.h"
 #include <concurrent_queue.h>
 namespace OpenGL::Gfx::RenderingSystem {

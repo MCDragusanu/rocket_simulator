@@ -1,7 +1,7 @@
 #pragma once
 #include "../../core/window/MainWindow.h"
 
-#include "../gfx/renderer_api/OpenGLContext.h"
+#include "../Gfx/renderer_api/OpenGLContext.h"
 
 
 namespace OpenGL::Window {

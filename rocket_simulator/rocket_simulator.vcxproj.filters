@@ -78,7 +78,7 @@
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\gfx\Buffer.cpp">
+    <ClCompile Include="src\core\gfx\mesh_api\Buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\core\gfx\renderer_api\RenderContext.cpp">
@@ -93,7 +93,7 @@
     <ClCompile Include="src\opengl\input\OpenGLMouseCodeMapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\gfx\VertexArray.cpp">
+    <ClCompile Include="src\core\gfx\mesh_api\VertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\opengl\gfx\OpenGLVertexArray.cpp">
@@ -134,7 +134,7 @@
     <ClInclude Include="src\core\user_interface\LayerStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\gfx\Buffer.h">
+    <ClInclude Include="src\core\gfx\mesh_api\Buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\opengl\gfx\OpenGLBuffer.h">
@@ -164,7 +164,7 @@
     <ClInclude Include="src\opengl\input\OpenGLMouseCodeMapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\gfx\VertexArray.h">
+    <ClInclude Include="src\core\gfx\mesh_api\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\opengl\gfx\OpenGLVertexArray.h">
@@ -183,6 +183,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\opengl\gfx\renderer_api\OpenGLRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\math\Math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

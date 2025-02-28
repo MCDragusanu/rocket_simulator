@@ -24,32 +24,32 @@ namespace OpenGL :: Gfx {
 		GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 	}
 
-	void OpenGLVertexBuffer::setLayout(const Core::Gfx::BufferLayout& layout)
+	void OpenGLVertexBuffer::setLayout(const Core::Gfx::Mesh::BufferLayout& layout)
 	{
 		this->layout = layout;
 	}
 
-	const Core::Gfx::BufferLayout& OpenGLVertexBuffer::getLayout() const noexcept
+	const Core::Gfx::Mesh::BufferLayout& OpenGLVertexBuffer::getLayout() const noexcept
 	{
 		return this->layout;
 	}
 
-	 GLenum OpenGLVertexBuffer::dataTypeConverter(Core::Gfx::DataType type) 
+	 GLenum OpenGLVertexBuffer::dataTypeConverter(Core::Gfx::Mesh::DataType type)
 	{
 		switch (type)
 		{
-		case Core::Gfx::DataType::Float:    return GL_FLOAT;
-		case Core::Gfx::DataType::Float2:   return GL_FLOAT;
-		case Core::Gfx::DataType::Float3:   return GL_FLOAT;
-		case Core::Gfx::DataType::Float4:   return GL_FLOAT;
-		case Core::Gfx::DataType::Mat2:     return GL_FLOAT;
-		case Core::Gfx::DataType::Mat3:     return GL_FLOAT;
-		case Core::Gfx::DataType::Mat4:     return GL_FLOAT;
-		case Core::Gfx::DataType::Int:      return GL_INT;
-		case Core::Gfx::DataType::Int2:     return GL_INT;
-		case Core::Gfx::DataType::Int3:     return GL_INT;
-		case Core::Gfx::DataType::Int4:     return GL_INT;
-		case Core::Gfx::DataType::None:
+		case Core::Gfx::Mesh::DataType::Float:    return GL_FLOAT;
+		case Core::Gfx::Mesh::DataType::Float2:   return GL_FLOAT;
+		case Core::Gfx::Mesh::DataType::Float3:   return GL_FLOAT;
+		case Core::Gfx::Mesh::DataType::Float4:   return GL_FLOAT;
+		case Core::Gfx::Mesh::DataType::Mat2:     return GL_FLOAT;
+		case Core::Gfx::Mesh::DataType::Mat3:     return GL_FLOAT;
+		case Core::Gfx::Mesh::DataType::Mat4:     return GL_FLOAT;
+		case Core::Gfx::Mesh::DataType::Int:      return GL_INT;
+		case Core::Gfx::Mesh::DataType::Int2:     return GL_INT;
+		case Core::Gfx::Mesh::DataType::Int3:     return GL_INT;
+		case Core::Gfx::Mesh::DataType::Int4:     return GL_INT;
+		case Core::Gfx::Mesh::DataType::None:
 		default:return 0;
 
 		}

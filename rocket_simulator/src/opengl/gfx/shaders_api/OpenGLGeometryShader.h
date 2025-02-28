@@ -1,9 +1,9 @@
 #pragma once
 #include <filesystem>
-#include "../../../core/gfx/shaders_api/Shader.h"
+#include "../../../core/Gfx/shaders_api/Shader.h"
 
 namespace OpenGL::ShadersApi {
-	class OpenGLGeometryShader : public Core::gfx::shaders::GeometryShader {
+	class OpenGLGeometryShader : public Core::Gfx::ShaderSystem::GeometryShader {
 		friend class OpenGLShaderPipeline;
 	public:
 		OpenGLGeometryShader(const std::string& sourceCode);

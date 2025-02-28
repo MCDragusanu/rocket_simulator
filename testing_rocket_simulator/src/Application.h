@@ -3,10 +3,10 @@
 //#include "../../rocket_simulator/src/core/window/MainWindow.h"
 #include "../../rocket_simulator/src/core/window/MainWindow.h"
 #include "../../rocket_simulator/src/core/events/EventHandler.h"
-#include "../../rocket_simulator/src/core/gfx/Buffer.h"
-#include "../../rocket_simulator/src/core/gfx/shaders_api/Shader.h"
-#include "../../rocket_simulator/src/core/gfx/shaders_api/ShaderPipeline.h"
-#include "../../rocket_simulator/src/core/gfx/VertexArray.h"
+#include "../../rocket_simulator/src/core/Gfx/Buffer.h"
+#include "../../rocket_simulator/src/core/Gfx/shaders_api/Shader.h"
+#include "../../rocket_simulator/src/core/Gfx/shaders_api/ShaderPipeline.h"
+#include "../../rocket_simulator/src/core/Gfx/VertexArray.h"
 
 
 
@@ -24,14 +24,14 @@ private:
 	void on_window_event(const std::unique_ptr<Core::Events::Event>& event) override;
 	void on_keyboard_event(const std::unique_ptr<Core::Events::Event>& event) override;
 	void on_mouse_event(const std::unique_ptr<Core::Events::Event>& event) override;
-	std::shared_ptr<Core::gfx::VertexArray> pVertexArray ;
-	std::shared_ptr<Core::gfx::IndexBuffer> pIndexBuffer ;
-	std::shared_ptr < Core::gfx::VertexBuffer> pVertexBuffer;
+	std::shared_ptr<Core::Gfx::VertexArray> pVertexArray ;
+	std::shared_ptr<Core::Gfx::IndexBuffer> pIndexBuffer ;
+	std::shared_ptr < Core::Gfx::VertexBuffer> pVertexBuffer;
 
 	Core::Window::MainWindow* mMainWindow = { nullptr };
 
-	Core::gfx::shaders::ShaderPipeline* pShaderPipeline = { nullptr };
-	Core::gfx::shaders::VertexShader* pVertexShader = { nullptr };
-	Core::gfx::shaders::FragmentShader* pFragmentShader = { nullptr };
+	Core::Gfx::shaders::ShaderPipeline* pShaderPipeline = { nullptr };
+	Core::Gfx::shaders::VertexShader* pVertexShader = { nullptr };
+	Core::Gfx::shaders::FragmentShader* pFragmentShader = { nullptr };
 	bool mIsRunning = { false };
 };

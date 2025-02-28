@@ -1,8 +1,8 @@
 #include "Buffer.h"
-#include "../../opengl/gfx/OpenGLBuffer.h"
-#include "../gfx/renderer_api/RenderContext.h"
-namespace Core::Gfx {
-    VertexBuffer* Core::Gfx::VertexBuffer::create(float* data, size_t byteSize) {
+#include "../../../opengl/Gfx/OpenGLBuffer.h"
+#include "../../Gfx/renderer_api/RenderContext.h"
+namespace Core::Gfx::Mesh {
+    VertexBuffer* Core::Gfx::Mesh::VertexBuffer::create(float* data, size_t byteSize) {
 
 
         switch (Core::Gfx::RenderingSystem::RenderContext::getAPI()) {
@@ -47,18 +47,18 @@ namespace Core::Gfx {
 
         switch (type)
         {
-        case Core::Gfx::DataType::Float:    return floatSize;
-        case Core::Gfx::DataType::Float2:   return float2Size;
-        case Core::Gfx::DataType::Float3:   return float3Size;
-        case Core::Gfx::DataType::Float4:   return float4Size;
-        case Core::Gfx::DataType::Mat2:     return mat2Size;
-        case Core::Gfx::DataType::Mat3:     return mat3Size;
-        case Core::Gfx::DataType::Mat4:     return mat4Size;
-        case Core::Gfx::DataType::Int:      return intSize;
-        case Core::Gfx::DataType::Int2:     return int2Size;
-        case Core::Gfx::DataType::Int3:     return int3Size;
-        case Core::Gfx::DataType::Int4:     return int4Size;
-        case Core::Gfx::DataType::None:
+        case DataType::Float:    return floatSize;
+        case DataType::Float2:   return float2Size;
+        case DataType::Float3:   return float3Size;
+        case DataType::Float4:   return float4Size;
+        case DataType::Mat2:     return mat2Size;
+        case DataType::Mat3:     return mat3Size;
+        case DataType::Mat4:     return mat4Size;
+        case DataType::Int:      return intSize;
+        case DataType::Int2:     return int2Size;
+        case DataType::Int3:     return int3Size;
+        case DataType::Int4:     return int4Size;
+        case DataType::None:
         default: return 0;
         }
     }
@@ -69,18 +69,18 @@ namespace Core::Gfx {
     {
         switch (this->type)
         {
-            case Core::Gfx::DataType::Float:    return 1;
-            case Core::Gfx::DataType::Float2:   return 2;
-            case Core::Gfx::DataType::Float3:   return 3;
-            case Core::Gfx::DataType::Float4:   return 4;
-            case Core::Gfx::DataType::Mat2:     return 4;
-            case Core::Gfx::DataType::Mat3:     return 9;
-            case Core::Gfx::DataType::Mat4:     return 16;
-            case Core::Gfx::DataType::Int:      return 1;
-            case Core::Gfx::DataType::Int2:     return 2;
-            case Core::Gfx::DataType::Int3:     return 3;
-            case Core::Gfx::DataType::Int4:     return 4;
-            case Core::Gfx::DataType::None:
+            case DataType::Float:    return 1;
+            case DataType::Float2:   return 2;
+            case DataType::Float3:   return 3;
+            case DataType::Float4:   return 4;
+            case DataType::Mat2:     return 4;
+            case DataType::Mat3:     return 9;
+            case DataType::Mat4:     return 16;
+            case DataType::Int:      return 1;
+            case DataType::Int2:     return 2;
+            case DataType::Int3:     return 3;
+            case DataType::Int4:     return 4;
+            case DataType::None:
             default:return 0;
 
         }

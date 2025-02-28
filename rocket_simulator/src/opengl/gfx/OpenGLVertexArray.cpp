@@ -21,7 +21,7 @@ void OpenGL::Gfx::OpenGLVertexArray::unBind()
 	glBindVertexArray(0);
 }
 
-void OpenGL::Gfx::OpenGLVertexArray::addVertexBuffer(const std::shared_ptr<Core::Gfx::VertexBuffer>& buffer)
+void OpenGL::Gfx::OpenGLVertexArray::addVertexBuffer(const std::shared_ptr<Core::Gfx::Mesh::VertexBuffer>& buffer)
 {
 	glBindVertexArray(mVertexArrayUid);
 	buffer->bind();
@@ -55,14 +55,14 @@ void OpenGL::Gfx::OpenGLVertexArray::addVertexBuffer(const std::shared_ptr<Core:
 	mVertexBufferList.push_back(buffer);
 }
 
-void OpenGL::Gfx::OpenGLVertexArray::addIndexBuffer(const std::shared_ptr<Core::Gfx::IndexBuffer>& buffer)
+void OpenGL::Gfx::OpenGLVertexArray::addIndexBuffer(const std::shared_ptr<Core::Gfx::Mesh::IndexBuffer>& buffer)
 {
 	glBindVertexArray(mVertexArrayUid);
 	buffer->bind();
 	mIndexBuffer = buffer;
 }
 
-const Core::Gfx::IndexBuffer* OpenGL::Gfx::OpenGLVertexArray::getIndexBuffer() const noexcept
+const Core::Gfx::Mesh::IndexBuffer* OpenGL::Gfx::OpenGLVertexArray::getIndexBuffer() const noexcept
 {
 	return this->mIndexBuffer.get();
 }

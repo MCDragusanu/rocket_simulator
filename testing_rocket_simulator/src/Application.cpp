@@ -1,16 +1,16 @@
 #include "Application.h"
-#include "../../rocket_simulator/src/opengl/gfx/OpenGLBuffer.h"
+#include "../../rocket_simulator/src/opengl/Gfx/OpenGLBuffer.h"
 #include "../../rocket_simulator/src/opengl/window/OpenGLWindow.h"
-#include "../../rocket_simulator/src/opengl/gfx/shaders_api/OpenGLVertexShader.h"
-#include "../../rocket_simulator/src/opengl/gfx/shaders_api/OpenGLFragmentShader.h"
-#include "../../rocket_simulator/src/opengl/gfx/shaders_api/OpenGLShaderPipeline.h"
-#include "../../rocket_simulator/src/opengl/gfx/OpenGLVertexArray.h"
+#include "../../rocket_simulator/src/opengl/Gfx/shaders_api/OpenGLVertexShader.h"
+#include "../../rocket_simulator/src/opengl/Gfx/shaders_api/OpenGLFragmentShader.h"
+#include "../../rocket_simulator/src/opengl/Gfx/shaders_api/OpenGLShaderPipeline.h"
+#include "../../rocket_simulator/src/opengl/Gfx/OpenGLVertexArray.h"
 void Application::init()
 {
 	using namespace Core::Window;
-	using namespace Core::gfx;
-	using namespace Core::gfx::shaders;
-	using namespace OpenGL::gfx;
+	using namespace Core::Gfx;
+	using namespace Core::Gfx::shaders;
+	using namespace OpenGL::Gfx;
 	using namespace OpenGL::Window;
 	using namespace OpenGL::ShadersApi;
 	WindowAttributes attr{};

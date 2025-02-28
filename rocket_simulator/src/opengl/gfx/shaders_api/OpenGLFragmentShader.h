@@ -1,10 +1,10 @@
 #pragma once
 #include <filesystem>
-#include "../../../core/gfx/shaders_api/Shader.h"
+#include "../../../core/Gfx/shaders_api/Shader.h"
 
 namespace OpenGL::ShadersApi {
 
-	class OpenGLFragmentShader : public Core::gfx::shaders::FragmentShader {
+	class OpenGLFragmentShader : public Core::Gfx::ShaderSystem::FragmentShader {
 		friend class OpenGLShaderPipeline;
 	public:
 		OpenGLFragmentShader(const std::string& sourceCode);

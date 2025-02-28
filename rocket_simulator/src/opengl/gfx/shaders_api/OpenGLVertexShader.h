@@ -1,9 +1,9 @@
 #pragma once
 #include <filesystem>
-#include "../../../core/gfx/shaders_api/Shader.h"
+#include "../../../core/Gfx/shaders_api/Shader.h"
 namespace OpenGL::ShadersApi {
 	
-	class OpenGLVertexShader  : public Core::gfx::shaders::VertexShader{
+	class OpenGLVertexShader  : public Core::Gfx::shaders::VertexShader{
 		friend class OpenGLShaderPipeline;
 	public:
 		OpenGLVertexShader(const std::string& sourceCode);

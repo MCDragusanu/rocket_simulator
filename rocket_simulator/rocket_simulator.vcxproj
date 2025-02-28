@@ -24,7 +24,7 @@
     <ClCompile Include="src\opengl\gfx\renderer_api\OpenGLRenderer.cpp" />
     <ClCompile Include="src\opengl\input\OpenGLMouseCodeMapper.cpp" />
     <ClCompile Include="src\core\events\EventHandler.cpp" />
-    <ClCompile Include="src\core\gfx\Buffer.cpp" />
+    <ClCompile Include="src\core\gfx\mesh_api\Buffer.cpp" />
     <ClCompile Include="src\core\gfx\renderer_api\RenderContext.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLGeometryShader.cpp" />
@@ -37,13 +37,14 @@
     <ClCompile Include="src\opengl\gfx\renderer_api\OpenGLContext.cpp" />
     <ClCompile Include="src\glad\glad.c" />
     <ClCompile Include="src\utils\logging\ConsoleLogger.cpp" />
-    <ClCompile Include="src\core\gfx\VertexArray.cpp" />
+    <ClCompile Include="src\core\gfx\mesh_api\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\gfx\camera_api\Camera.h" />
     <ClInclude Include="src\core\gfx\entity_api\Entity.h" />
     <ClInclude Include="src\core\gfx\renderer_api\Renderer.h" />
     <ClInclude Include="src\core\gfx\scene_api\Scene.h" />
+    <ClInclude Include="src\core\math\Math.h" />
     <ClInclude Include="src\opengl\gfx\OpenGLVertexArray.h" />
     <ClInclude Include="src\opengl\gfx\renderer_api\OpenGLRenderer.h" />
     <ClInclude Include="src\opengl\input\OpenGLMouseCodeMapper.h" />
@@ -54,7 +55,7 @@
     <ClInclude Include="src\core\gfx\shaders_api\Shader.h" />
     <ClInclude Include="src\core\gfx\shaders_api\ShaderPipeline.h" />
     <ClInclude Include="src\opengl\gfx\OpenGLBuffer.h" />
-    <ClInclude Include="src\core\gfx\Buffer.h" />
+    <ClInclude Include="src\core\gfx\mesh_api\Buffer.h" />
     <ClInclude Include="src\core\user_interface\Layer.h" />
     <ClInclude Include="src\core\user_interface\LayerStack.h" />
     <ClInclude Include="src\opengl\input\OpenGLKeyboardMapper.h" />
@@ -65,7 +66,7 @@
     <ClInclude Include="src\core\gfx\renderer_api\RenderContext.h" />
     <ClInclude Include="src\utils\error_handlers\OpenGLErrorHandler.h" />
     <ClInclude Include="src\utils\logging\ConsoleLogger.h" />
-    <ClInclude Include="src\core\gfx\VertexArray.h" />
+    <ClInclude Include="src\core\gfx\mesh_api\VertexArray.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
