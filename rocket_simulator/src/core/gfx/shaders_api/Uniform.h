@@ -34,7 +34,12 @@ namespace Core::Gfx::ShaderSystem {
         Sampler3D = 0b1100010,
         SamplerCube = 0b1100011
     };
-
+    struct UniformField {
+        size_t location;
+        size_t size;
+        UniformDataType type;
+        std::string name;
+    };
     
     enum class UniformResult {
         Success,        ///< The uniform was successfully uploaded.
@@ -45,36 +50,27 @@ namespace Core::Gfx::ShaderSystem {
 
     template <typename T>
     class Uniform {
-        virtual const std::string& getUniformName() const noexcept;
-        virtual UniformDataType getDataType() const noexcept;
-        virtual size_t getUniformLocation() const noexcept;
-        virtual size_t getUniformSize() const noexcept;
-        virtual void setUniform(const T* value) = 0;
-        virtual void uploadUniform() = 0; // abstract this to be platform independend 
+    public:
+        Uniform<T>(const UniformField& field, const T* data);
+        inline const std::string& getUniformName() const noexcept {
+            return field.name;
+        }
+        inline UniformDataType getDataType() const noexcept {
+            return field.type
+        }
+        inline size_t getUniformLocation() const noexcept {
+            return field.location;
+        }
+        inline size_t getUniformSize() const noexcept {
+            return field.size;
+        }
+        inline void setUniform(const T* value) {
+            this->pData = value;
+        }
+     
     protected:
-        std::string mName;
-        size_t uniformLocation;
-        size_t uniformSize;
+        UniformField field;
         const T* pData;
     };
 
-
-    class FloatUniform : public Uniform<float> {
-    public:
-        FloatUniform(const std::string& uniformName, size_t uniformLocation, float value);
-        virtual void setUniform(const float* ptrFloat) override;
-        virtual void uploadUniform() override;
-    };
-
-    class Matrix4fUniform : public Uniform<Core::Math::Matrix4f> {
-        Matrix4fUniform(const std::string& uniformName, size_t uniformLocation, const Core::Math::Matrix4f* ptrMatrix);
-        virtual void setUniform(const Core::Math::Matrix4f* ptrFloat) override;
-        virtual void uploadUniform() override;
-    };
-
-    class Matrix3fUniform : public Uniform<Core::Math::Matrix3f> {
-        Matrix3fUniform(const std::string& uniformName, size_t uniformLocation, const Core::Math::Matrix3f* ptrMatrix);
-        virtual void setUniform(const Core::Math::Matrix3f* ptrFloat) override;
-        virtual void uploadUniform() override;
-    };
 }

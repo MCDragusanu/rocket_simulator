@@ -31,13 +31,34 @@ namespace Core::Gfx::ShaderSystem {
     public:
         virtual void createPipeline() = 0;
         virtual void attachShaders(const std::vector<Shader*>& compiledShaders) = 0;
-        virtual void linkPrograms() {}
         virtual void bind() = 0;
         virtual void unBind() = 0;
         virtual void release() = 0;
-        virtual const std::vector<const Uniform>& getAvailableUniformFields() = 0;
-        virtual UniformResult uploadUniform(const UniformDescriptor& desc) = 0;
+        virtual const std::vector<const UniformField>& getAvailableUniformFields() = 0;
 
+        
+        virtual UniformResult uploadUniform(const Uniform<int>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<float>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<bool>*) = 0;
+
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::Vec2f>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::Vec3f>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::Vec4f>*) = 0;
+        
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::Matrix2f>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::Matrix3f>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::Matrix4f>*) = 0;
+
+        /*virtual UniformResult uploadUniform(const Uniform<Core::Math::IVec2>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::IVec3>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::IVec4>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::BVec2>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::BVec3>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Math::BVec4>*) = 0;*/
+
+        /*virtual UniformResult uploadUniform(const Uniform<Core::Gfx::Sampler2D>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Gfx::Sampler3D>*) = 0;
+        virtual UniformResult uploadUniform(const Uniform<Core::Gfx::SamplerCube>*) = 0;*/
     protected:
 
         virtual void validateState(const std::initializer_list<PipeLineState>& validStates) const = 0;
