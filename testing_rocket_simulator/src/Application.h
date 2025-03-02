@@ -30,8 +30,8 @@ private:
 
 	Core::Window::MainWindow* mMainWindow = { nullptr };
 
-	Core::Gfx::shaders::ShaderPipeline* pShaderPipeline = { nullptr };
-	Core::Gfx::shaders::VertexShader* pVertexShader = { nullptr };
-	Core::Gfx::shaders::FragmentShader* pFragmentShader = { nullptr };
+	Core::Gfx::ShaderSystem::ShaderPipeline* pShaderPipeline = { nullptr };
+	Core::Gfx::ShaderSystem::VertexShader* pVertexShader = { nullptr };
+	Core::Gfx::ShaderSystem::FragmentShader* pFragmentShader = { nullptr };
 	bool mIsRunning = { false };
 };

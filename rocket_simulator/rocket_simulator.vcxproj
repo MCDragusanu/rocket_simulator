@@ -19,8 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\gfx\entity_api\primitives\Cube.cpp" />
+    <ClCompile Include="src\core\gfx\entity_api\Entity.cpp" />
+    <ClCompile Include="src\core\gfx\mesh_api\Mesh.cpp" />
+    <ClCompile Include="src\opengl\gfx\renderer_api\render_commands\OpenGLDrawIndexed.cpp" />
+    <ClCompile Include="src\core\gfx\camera_api\Camera.cpp" />
     <ClCompile Include="src\core\gfx\renderer_api\Renderer.cpp" />
-    <ClCompile Include="src\opengl\gfx\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\core\math\Math.cpp" />
+    <ClCompile Include="src\opengl\gfx\mesh_api\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\opengl\gfx\renderer_api\OpenGLRenderer.cpp" />
     <ClCompile Include="src\opengl\input\OpenGLMouseCodeMapper.cpp" />
     <ClCompile Include="src\core\events\EventHandler.cpp" />
@@ -30,7 +36,7 @@
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLGeometryShader.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLFragmentShader.cpp" />
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLVertexShader.cpp" />
-    <ClCompile Include="src\opengl\gfx\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\opengl\gfx\mesh_api\OpenGLBuffer.cpp" />
     <ClCompile Include="src\core\user_interface\LayerStack.cpp" />
     <ClCompile Include="src\opengl\input\OpenGLKeyboardMapper.cpp" />
     <ClCompile Include="src\opengl\window\OpenGLWindow.cpp" />
@@ -40,12 +46,16 @@
     <ClCompile Include="src\core\gfx\mesh_api\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\gfx\entity_api\primitives\Cube.h" />
+    <ClInclude Include="src\core\gfx\mesh_api\Mesh.h" />
+    <ClInclude Include="src\opengl\gfx\renderer_api\render_commands\OpenGLDrawIndexed.h" />
     <ClInclude Include="src\core\gfx\camera_api\Camera.h" />
     <ClInclude Include="src\core\gfx\entity_api\Entity.h" />
     <ClInclude Include="src\core\gfx\renderer_api\Renderer.h" />
     <ClInclude Include="src\core\gfx\scene_api\Scene.h" />
+    <ClInclude Include="src\core\gfx\shaders_api\Uniform.h" />
     <ClInclude Include="src\core\math\Math.h" />
-    <ClInclude Include="src\opengl\gfx\OpenGLVertexArray.h" />
+    <ClInclude Include="src\opengl\gfx\mesh_api\OpenGLVertexArray.h" />
     <ClInclude Include="src\opengl\gfx\renderer_api\OpenGLRenderer.h" />
     <ClInclude Include="src\opengl\input\OpenGLMouseCodeMapper.h" />
     <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLShaderPipeline.h" />
@@ -54,7 +64,7 @@
     <ClInclude Include="src\opengl\gfx\shaders_api\OpenGLVertexShader.h" />
     <ClInclude Include="src\core\gfx\shaders_api\Shader.h" />
     <ClInclude Include="src\core\gfx\shaders_api\ShaderPipeline.h" />
-    <ClInclude Include="src\opengl\gfx\OpenGLBuffer.h" />
+    <ClInclude Include="src\opengl\gfx\mesh_api\OpenGLBuffer.h" />
     <ClInclude Include="src\core\gfx\mesh_api\Buffer.h" />
     <ClInclude Include="src\core\user_interface\Layer.h" />
     <ClInclude Include="src\core\user_interface\LayerStack.h" />

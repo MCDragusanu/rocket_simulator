@@ -10,7 +10,7 @@ namespace OpenGL::Gfx::RenderingSystem {
 	public:
 		OpenGLContext(GLFWwindow* window);
 		virtual void init() override;
-		virtual void swap_buffers() override;
+		virtual void swapBuffers() override;
 		virtual void release() override;
 		virtual Core::Gfx::RenderingSystem::RenderingAPI getRenderingAPIUsed() const noexcept override { return Core::Gfx::RenderingSystem::RenderingAPI::OpenGL; };
 	private:

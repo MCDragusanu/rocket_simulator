@@ -1,8 +1,8 @@
 #include "Buffer.h"
-#include "../../../opengl/Gfx/OpenGLBuffer.h"
+#include "../../../opengl/Gfx/mesh_api/OpenGLBuffer.h"
 #include "../../Gfx/renderer_api/RenderContext.h"
-namespace Core::Gfx::Mesh {
-    VertexBuffer* Core::Gfx::Mesh::VertexBuffer::create(float* data, size_t byteSize) {
+namespace Core::Gfx::MeshSystem {
+    VertexBuffer* VertexBuffer::create(float* data, size_t byteSize) {
 
 
         switch (Core::Gfx::RenderingSystem::RenderContext::getAPI()) {
@@ -86,9 +86,6 @@ namespace Core::Gfx::Mesh {
         }
     }
     
-
-
-
     BufferLayout::BufferLayout():mElements() , mStride(0)
     {
     }

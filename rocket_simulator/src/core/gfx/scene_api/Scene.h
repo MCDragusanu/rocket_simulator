@@ -1,43 +1,32 @@
-#include "../camera_api/Camera.h"
-#include <vector>
 
-/**
- * @namespace Core::Gfx::SceneSystem
- * @brief Provides functionality for managing and rendering scenes.
- */
+#include "../camera_api/Camera.h"
+#include "../entity_api/Entity.h"
+#include "../shaders_api/ShaderPipeline.h"
+
 namespace Core::Gfx::SceneSystem {
 
-    /**
-     * @class Scene
-     * @brief Represents a renderable scene in the graphics system.
-     * @details It is the responsibility of the Scene to properly batch resources into appropriate render commands.
-     */
     class Scene {
     public:
-        /**
-         * @brief Begins rendering the scene with the given camera state.
-         * @param state The current camera state containing view and projection information.
-         */
-        virtual void beginScene(const CameraSystem::CameraState& state) = 0;
-
-        /**
-         * @brief Releases all resources associated with the scene.
-         */
+        virtual void loadScene() = 0;
+        virtual void beginScene() = 0;
         virtual void releaseScene() = 0;
-
-        /**
-         * @brief Retrieves the name of the scene.
-         * @return A reference to the scene name as a string.
-         */
         virtual const std::string& getSceneName() const noexcept = 0;
 
+        // Provides render data instead of rendering itself
+        virtual const std::vector<RenderingSystem::RenderCommand*>& getRenderCommands() const {
+            return commandList;
+        }
+
+        virtual const std::vector<EntitySystem::Entity*>& getEntities() const {
+            return entityList;
+        }
+
     protected:
-        /**
-         * @brief Retrieves the list of render commands for the scene.
-         * @return A reference to a vector of raw pointers representing render commands.
-         * @note The scene is responsible for batching and organizing these commands correctly.
-         */
-        virtual const std::vector<void*>& getCommands() const noexcept = 0;
+        std::shared_ptr<Core::Gfx::CameraSystem::Camera> camera;
+        std::shared_ptr<Core::Gfx::ShaderSystem::ShaderPipeline> shaderPipeline;
+        std::vector<RenderingSystem::RenderCommand*> commandList;
+        std::vector<EntitySystem::Entity*> entityList;
+        std::string sceneName;
     };
 
 }

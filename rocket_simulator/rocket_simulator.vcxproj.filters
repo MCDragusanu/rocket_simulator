@@ -63,7 +63,7 @@
     <ClCompile Include="src\core\user_interface\LayerStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\opengl\gfx\OpenGLBuffer.cpp">
+    <ClCompile Include="src\opengl\gfx\mesh_api\OpenGLBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\opengl\gfx\shaders_api\OpenGLVertexShader.cpp">
@@ -96,13 +96,31 @@
     <ClCompile Include="src\core\gfx\mesh_api\VertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\opengl\gfx\OpenGLVertexArray.cpp">
+    <ClCompile Include="src\opengl\gfx\mesh_api\OpenGLVertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\opengl\gfx\renderer_api\OpenGLRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\core\gfx\renderer_api\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\math\Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\gfx\camera_api\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opengl\gfx\renderer_api\render_commands\OpenGLDrawIndexed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\gfx\mesh_api\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\gfx\entity_api\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\gfx\entity_api\primitives\Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -137,7 +155,7 @@
     <ClInclude Include="src\core\gfx\mesh_api\Buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\opengl\gfx\OpenGLBuffer.h">
+    <ClInclude Include="src\opengl\gfx\mesh_api\OpenGLBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\core\gfx\shaders_api\ShaderPipeline.h">
@@ -167,7 +185,7 @@
     <ClInclude Include="src\core\gfx\mesh_api\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\opengl\gfx\OpenGLVertexArray.h">
+    <ClInclude Include="src\opengl\gfx\mesh_api\OpenGLVertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\core\gfx\scene_api\Scene.h">
@@ -186,6 +204,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\core\math\Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\shaders_api\Uniform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\gfx\renderer_api\render_commands\OpenGLDrawIndexed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\mesh_api\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gfx\entity_api\primitives\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
